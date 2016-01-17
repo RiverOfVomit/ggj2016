@@ -1,0 +1,42 @@
+# http://stackoverflow.com/questions/12233040/google-app-engine-yaml-index-html
+# http://stackoverflow.com/questions/5609000/serve-static-file-using-app-engine
+
+#application: rov-ggj2016
+#version: 1
+runtime: python27
+api_version: 1
+threadsafe: yes
+
+handlers:
+
+- url: /
+  static_files: public/index.html
+  upload: public/index.html
+- url: (.+)/
+  static_files: public/\1/index.html
+  upload: public
+- url: /
+  static_dir: public
+
+
+# Recommended file skipping declaration from the GAE tutorials
+skip_files:
+  - ^(.*/)?app\.yaml
+  - ^(.*/)?app\.yml
+  - ^(.*/)?#.*#
+  - ^(.*/)?.*~
+  - ^(.*/)?.*\.py[co]
+  - ^(.*/)?.*/RCS/.*
+  - ^(.*/)?\..*
+  - ^(.*/)?tests$
+  - ^(.*/)?test$
+  - ^test/(.*/)?
+  - ^COPYING.LESSER
+  - ^README\..*
+  - \.gitignore
+  - ^\.git/.*
+  - \.*\.lint$
+  - ^fabfile\.py
+  - ^testrunner\.py
+  - ^grunt\.js
+  - ^node_modules/(.*/)?

@@ -8,16 +8,18 @@ api_version: 1
 threadsafe: yes
 
 handlers:
+- url: /js
+  static_dir: public/js
+- url: /assets
+  static_dir: public/assets
+- url: .*  # This regex directs all routes to main.app
+  script: main.app
 
-- url: /
-  static_files: public/index.html
-  upload: public/index.html
-- url: (.+)/
-  static_files: public/\1/index.html
-  upload: public
-- url: /
-  static_dir: public
-
+libraries:
+- name: webapp2
+  version: latest
+- name: jinja2
+  version: latest
 
 # Recommended file skipping declaration from the GAE tutorials
 skip_files:

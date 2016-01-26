@@ -9,14 +9,35 @@ apt-get -y install tmux
 apt-get -y install curl
 #apt-get -y install nodejs
 #apt-get -y install npm
+apt-get -y install rubygems
 
 #npm install -g node-inspector
 
 npm install -g bower
+npm install -g debug
+npm install -g express
+npm install -g express-generator
+npm install -g swig
 
 #npm -g install phaser
-
 bower install phaser
 
 wget https://bootstrap.pypa.io/get-pip.py
 python ./get-pip.py
+
+pip install Flask
+pip install flask-socketio
+
+#pip install virtualenv
+#pip install virtualenvwrapper # http://docs.python-guide.org/en/latest/dev/virtualenvs/
+#export WORKON_HOME=~/Envs
+#source /usr/local/bin/virtualenvwrapper.sh
+
+# or:
+# http://virtualenvwrapper.readthedocs.org/en/latest/index.html
+# You will want to add the command to source /usr/local/bin/virtualenvwrapper.sh to your shell startup file
+
+gem install rhc 
+
+git clone https://github.com/photonstorm/phaser/tree/v2.4.4
+

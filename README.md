@@ -1,6 +1,6 @@
 # River Of Vomit 2016 Global Game Jam Project
 
-Hosted on http://rov-ggj2016.appspot.com/ 
+Hosted on https://rovggj2016.appspot.com/ 
 
 ## Setup
 

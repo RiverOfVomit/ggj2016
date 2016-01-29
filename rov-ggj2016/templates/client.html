@@ -22,20 +22,17 @@
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="../static/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/1.3.6/socket.io.min.js"></script>
-    <script type="text/javascript" charset="utf-8">
-        
-        $("#mini-game-btn").click(function() {
-            var socket = io.connect('http://' + document.domain + ':' + location.port);
-         
-                socket.emit('echo', {data: 'Echo-String-on-click'});
-            
-            return false;
-        });
 
-        // var socket = io.connect('http://' + document.domain + ':' + location.port);
-        // socket.on('connect', function() {
-        //     socket.emit('echo', {data: 'Echo-String-on-connect'});
-        // });
+    <script type="text/javascript" charset="utf-8">
+        var socket = io.connect('http://' + document.domain + ':' + location.port);
+        socket.on('connect', function() {
+            socket.emit('client connected', {data: 'Client connected!'});
+            $("#mini-game-btn").click(function() {
+              socket.emit('echo', {data: 'Echo-String-on-click'});
+              socket.emit('button pushed', {data: 'Button pushed!'});
+            });
+        });
     </script>
+
   </body>
 </html>

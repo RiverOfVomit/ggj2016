@@ -14,7 +14,7 @@
     <h1>I'm the Client</h1>
     <form id="mini-game-form">
         <button type="submit" class="btn btn-default" id="mini-game-btn">
-            Echo  Test
+            Echo  BLA
         </button>
     </form>
 
@@ -25,16 +25,16 @@
     <script type="text/javascript" charset="utf-8">
         
         $("#mini-game-btn").click(function() {
-            console.log('clicked');
-            $( "#mini-game-form" ).submit(function(){
-                socket.emit('echo', {data: 'Echo-String'});
-            });
+            var socket = io.connect('http://' + document.domain + ':' + location.port);
+         
+                socket.emit('echo', {data: 'Echo-String-on-click'});
+            
             return false;
         });
 
         // var socket = io.connect('http://' + document.domain + ':' + location.port);
         // socket.on('connect', function() {
-        //     socket.emit('echo', {data: 'Echo-String'});
+        //     socket.emit('echo', {data: 'Echo-String-on-connect'});
         // });
     </script>
   </body>

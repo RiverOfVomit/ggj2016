@@ -26,7 +26,8 @@ def client():
 @app.route("/board")
 def board():
 	#return "Board is up!"
-	return renter_template("board.html")
+	print "Board opened."
+	return render_template("board.html")
 
 
 @socketio.on('my event')
@@ -36,8 +37,9 @@ def handle_my_custom_event(json):
 
 @socketio.on("echo")
 def handle_my_custom_event(string):
-	emit("This is echo alpha seven", string)
-	print "Echo sent"
+	print str(string)
+	#emit("This is echo alpha seven", string)
+	#print "Echo sent"
 	# All clients will messages from emit().
 
 

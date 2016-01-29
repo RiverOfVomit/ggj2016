@@ -73,4 +73,4 @@ def handle_my_custom_event(json):
 ############################
 
 if __name__ == '__main__':
-    socketio.run(app,'0.0.0.0',8080)
+    socketio.run(app,'0.0.0.0',8008)

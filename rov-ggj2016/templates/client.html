@@ -30,6 +30,7 @@
             $("#mini-game-btn").click(function() {
               socket.emit('echo', {data: 'Echo-String-on-click'});
               socket.emit('button pushed', {data: 'Button pushed!'});
+              return false;
             });
         });
     </script>

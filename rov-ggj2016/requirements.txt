@@ -1,1 +1,5 @@
 Flask
+flask-socketio
+eventlet
+gevent
+gevent-websocket

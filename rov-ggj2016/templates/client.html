@@ -1,1 +1,41 @@
-Client
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Summon of BeeR - Client</title>
+
+    <!-- Bootstrap -->
+    <link href="../static/assets/css/bootstrap.min.css" rel="stylesheet">
+
+</head>
+  <body>
+    <h1>I'm the Client</h1>
+    <form id="mini-game-form">
+        <button type="submit" class="btn btn-default" id="mini-game-btn">
+            Echo  Test
+        </button>
+    </form>
+
+    <script src="../static/js/jquery-2.2.0.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="../static/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/1.3.6/socket.io.min.js"></script>
+    <script type="text/javascript" charset="utf-8">
+        
+        $("#mini-game-btn").click(function() {
+            console.log('clicked');
+            $( "#mini-game-form" ).submit(function(){
+                socket.emit('echo', {data: 'Echo-String'});
+            });
+            return false;
+        });
+
+        // var socket = io.connect('http://' + document.domain + ':' + location.port);
+        // socket.on('connect', function() {
+        //     socket.emit('echo', {data: 'Echo-String'});
+        // });
+    </script>
+  </body>
+</html>

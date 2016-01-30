@@ -46,9 +46,9 @@ def board():
     #return "Hello World!"
     return render_template('board.html')
 
-@app.route('/<path:resource>')
-def serveStaticResource(resource):
-    return send_from_directory('static/', resource)
+# @app.route('/<path:resource>')
+# def serveStaticResource(resource):
+#    return send_from_directory('static/', resource)
 
 @app.route("/test")
 def test():

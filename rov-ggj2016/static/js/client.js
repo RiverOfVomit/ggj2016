@@ -27,12 +27,12 @@ socket.on('connect', function() {
 });
 
 socket.on('choose tile result', function(msg) {
-	console.log(msg);
+	console.log(msg); //player object || false
 	spinnerOut();
 });
 
 socket.on('player create result', function(msg) {
-	console.log(msg);
+	console.log(msg); //player object || false
 	spinnerOut();
 });
 

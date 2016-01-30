@@ -1,19 +1,22 @@
+import os
 
-from flask import Flask, render_template
-from flask_socketio import SocketIO
-from flask_socketio import send, emit
+from flask import Flask, render_template, request
+from flask_socketio import SocketIO, send, emit
+from gamecontroller import GameController
+
 
 ############################
 ################### Init
 ############################
 
 app = Flask(__name__)
-
+socketio = SocketIO(app)
 print("starting up server")
 
 app.config.from_pyfile('flaskapp.cfg')
 
-socketio = SocketIO(app)
+gamecontroller = GameController()
+
 
 ############################
 ################### Routes
@@ -51,6 +54,8 @@ def test():
 ################### Events
 ############################
 
+print "EVENTS!!!"
+
 @socketio.on('client connected')
 def handle_client_connected_event(json):
     print('Client Connected: ' + str(json))
@@ -62,15 +67,32 @@ def handle_client_connected_event(json):
 @socketio.on('button pushed')
 def handle_button_pushed_event(json):
     print('Button pushed: ' + str(json))
-    emit('button pushed', {'data': "Button was pushed!"}, broadcast=True)
+    emit('button pushed', {'data': "Button was pushed by player " + request.sid}, broadcast=True)
 
 @socketio.on('my event')
 def handle_my_custom_event(json):
     print('Demo Event: ' + str(json))
 
+@socketio.on("Tile requested")
+def handle_tile_requested_event(json):
+	print request.sid, type(request.sid)
+	gamecontroller.request_tile(request.sid)
+
+
+@socketio.on("choose tile")
+def handle_tile_requested_event(something):
+	print "Choose tile request", str(something), "from main.py"
+	gamecontroller.choose_tile(something)
+
+
+
+
 ############################
 ################### Run
-############################
+###########################
+
+port = int(os.environ.get('ROVPORT',8080))
 
 if __name__ == '__main__':
-    socketio.run(app,'0.0.0.0',8008)
+
+    socketio.run(app,'0.0.0.0',port)

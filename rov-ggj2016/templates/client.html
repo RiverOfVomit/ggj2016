@@ -1,39 +1,42 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+<head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Summon of BeeR - Client</title>
+    <title>BeeR - Player</title>
 
-    <!-- Bootstrap -->
-    <link href="../static/assets/css/bootstrap.min.css" rel="stylesheet">
+    <link href="static/assets/css/bootstrap.min.css" rel="stylesheet">
+    <link href="static/assets/css/game.css" rel="stylesheet">
 
 </head>
-  <body>
-    <h1>I'm the Client</h1>
-    <form id="mini-game-form">
-        <button type="submit" class="btn btn-default" id="mini-game-btn">
-            Echo  BLA
-        </button>
-    </form>
+<body class="client text-center">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-xs-12">
+                <div id="choose-tile">
+                    <input type="text" placeholder="1b">
+                    <button id="choose-tile-button" class="btn btn secondary">choose game</button>
 
-    <script src="../static/js/jquery-2.2.0.min.js"></script>
-    <!-- Include all compiled plugins (below), or include individual files as needed -->
-    <script src="../static/js/bootstrap.min.js"></script>
+                </div>
+                <div id="mini-game">
+                    <h1>I'm the Client</h1>
+                    <div class="counter">
+                        Push Button in : <span class="counter-num"></span>s
+                    </div>
+
+                    <button class="btn btn-primary btn-lg" id="mini-game-btn">
+                        button
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- scripts -->
+    <script type="text/javascript" src="static/js/jquery-2.2.0.min.js"></script>
+    <script type="text/javascript" src="static/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/1.3.6/socket.io.min.js"></script>
-
-    <script type="text/javascript" charset="utf-8">
-        var socket = io.connect('http://' + document.domain + ':' + location.port);
-        socket.on('connect', function() {
-            socket.emit('client connected', {data: 'Client connected!'});
-            $("#mini-game-btn").click(function() {
-              socket.emit('echo', {data: 'Echo-String-on-click'});
-              socket.emit('button pushed', {data: 'Button pushed!'});
-              return false;
-            });
-        });
-    </script>
-
-  </body>
+    <script type="text/javascript" src="static/js/client.js"></script>
+</body>
 </html>

@@ -33,7 +33,7 @@ $('#choose-tile-form').submit(function(){
 
     loadingSpinner.fadeIn();
     topBbar.animate({top: "-190px"}, 500);
-    $('.mini-game-btn').delay('200').fadeIn('300');
+    $('.mini-game-inner ').delay('200').fadeIn('300');
     // counter();
   }else{
     alert('Bitte Zahl eingeben');

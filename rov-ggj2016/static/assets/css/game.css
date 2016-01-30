@@ -20,7 +20,9 @@ html{
 body{
 	font-family: shadows_into_lightregular, sans-serif;
 	position: relative;
+	background-color: black;
 	height: 100%;
+	color: white;
 }
 
 .is-hidden{
@@ -44,8 +46,53 @@ body{
 	BOARD STYLE
 -----------------------------------------------*/
 body.board{
-	background: #3D4B5F;
-	color: white;
+}
+
+.board{
+	width: 900px;
+}
+.board td{
+	width: 300px;
+	height: 300px;
+	text-align: center;
+	font-size: 30px;
+	vertical-align: middle;
+}
+.tile-1{
+	background: url('/static/assets/img/tile1.png');
+	background-size: cover;
+}
+.tile-2{
+	background: url('/static/assets/img/tile2.png');
+	background-size: cover;
+}
+.tile-3{
+	background: url('/static/assets/img/tile3.png');
+	background-size: cover;
+}
+.tile-4{
+	background: url('/static/assets/img/tile4.png');
+	background-size: cover;
+}
+.tile-5{
+	background: url('/static/assets/img/tile5.png');
+	background-size: cover;
+}
+.tile-6{
+	background: url('/static/assets/img/tile6.png');
+	background-size: cover;
+}
+.tile-7{
+	background: url('/static/assets/img/tile7.png');
+	background-size: cover;
+}
+.tile-8{
+	background: url('/static/assets/img/tile8.png');
+	background-size: cover;
+}
+.tile-9{
+	background: url('/static/assets/img/tile9.png');
+	background-size: cover;
 }
 
 /* -------------------------------------------
@@ -120,6 +167,13 @@ body.client{
 	height: 100%;
 	position: relative;	
 }
+.mini-game-inner{
+	position: absolute;
+	bottom: 20%;
+	left: 50%;
+	margin-left: -30%;
+	font-size: 30px;
+}
 .mini-game-btn{
 	border-radius: 0;
 	border: none;
@@ -127,10 +181,7 @@ body.client{
 	width: 60%;
 	height: 200px;
 	max-width: 500px;
-	position: absolute;
-	bottom: 20%;
-	left: 50%;
-	margin-left: -30%;
+	margin-top: 50px;
 	font-size: 30px;
 }
 

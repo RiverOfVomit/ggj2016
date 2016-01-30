@@ -12,8 +12,8 @@ var loadingSpinner = $('.loading'),
         });
     });
 
-		socket.on('my response', function(msg) {
-			console.log(msg);
+		socket.on('tile reserved', function(msg) {
+			console.log(msg.data);
 			loadingSpinner.fadeOut();
 		});
 

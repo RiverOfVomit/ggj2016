@@ -1,20 +1,20 @@
 import random
 
-player_names = ['Josefus','Manu','Sheb']
+BD_PLAYER_NAMES = ['Josefus','Manu','Sheb']
 
 class Players(object):
 
     def __init__(self):
     	print "Creating Players bucket"
-        self.players = {}
+        self.player = {}
 
     def add_new_player(self,sid):
-        self.players[sid] = Player(sid)
-        return self.players[sid]
+        self.player[sid] = Player(sid)
+        return self.player[sid]
 
 class Player(object):
 
     def __init__(self, sid):
     	print "Creating new Player"
         self.sid = sid
-        self.name = random.choice(player_names) + ' ' +  str(random.randint(1, 100))
+        self.name = random.choice(BD_PLAYER_NAMES) + ' ' +  str(random.randint(1, 100))

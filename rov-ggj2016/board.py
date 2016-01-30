@@ -2,28 +2,25 @@
 from tiles import *
 
 class Board(object):
-	def __init__(self):
-		self.config = (3,5)
+
+	def __init__(self, tile_number):
+		self.tile_number = tile_number
 		self.tiles = {}
+		self.initalize_tiles(self.tile_number)
 
-	def initalize_tiles(self, config):
-		"""Creates all tiles and puts them into a dictionary"""
-		print "x:", config[0], "y:", config[1]
-
-		# Create tile objects according to config
-		for x in range(config[0]):
-			for y in range(config[1]):
-				self.tiles[x,y] = Tile((x,y))
-				# TEST
-				print self.tiles[(x,y)].id
-
-		print "BOARD:", len(self.tiles), "created"
-
+	def initalize_tiles(self, tile_number):
+		for x in range(0, tile_number):
+			self.tiles[x] = Tile(x)
 
 	def update_tiles(self):
 		pass
 
-
+	def request_tile(self, number, player):
+		number = int(number)
+		if number in self.tiles:
+			return self.tiles[number].request(player)
+		else:
+			return False
 
 #TESTS
 #tc = Board()

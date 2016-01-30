@@ -54,8 +54,6 @@ def test():
 ################### Events
 ############################
 
-print "EVENTS!!!"
-
 @socketio.on('client connected')
 def handle_client_connected_event(json):
     print('Client Connected: ' + str(json))
@@ -81,9 +79,9 @@ def handle_tile_requested_event(json):
 
 @socketio.on("choose tile")
 def handle_tile_requested_event(data):
-    print "event: choose tile", str(data)
-    reserved = gamecontroller.request_tile(data, request.sid)
-    emit("tile reserved",{'data': 'Server generated event', 'count': 'count'})
+    print "event: choose tile", str(data['tile'])
+    success = gamecontroller.request_tile(data['tile'], request.sid)
+    emit("tile reserved",{'sucess': success})
 
 
 ############################

@@ -1,11 +1,15 @@
 """Tiles"""
 
+BD_TILE_STATE_OPEN = "open"
+BD_TILE_STATE_RESERVED = "reserved"
+BD_TILE_STATE_SOLVED = "solved"
+
 class Tile(object):
-	def __init__(self, coordinate):
-		self.states = ["open", "reserved", "solved"]
-		self.id = coordinate
-		self.state = "open"
-		self.player = ""
+	def __init__(self, number):
+
+		self.id = number
+		self.state = BD_TILE_STATE_OPEN
+		self.player = False
 
 	def change_state(self, state):
 		if state in self.states:
@@ -13,5 +17,10 @@ class Tile(object):
 		else:
 			print "wrong state given"
 
-	def set_player(self, player_name):
-		self.player = player_name
+	def request(self, player):
+		if self.state != BD_TILE_STATE_OPEN:
+			return False
+		else:
+			self.state = BD_TILE_STATE_RESERVED
+			self.player = player
+			return True

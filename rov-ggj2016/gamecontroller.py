@@ -2,8 +2,10 @@
 
 from board import Board
 from players import *
+from pprint import pprint
 
 BD_TILE_NUMBER = 9
+BD_MAX_PLAYERS = 3
 
 class GameController():
 
@@ -15,13 +17,13 @@ class GameController():
 
     def request_tile(self, number, sid):
         print "Tile", number ,"requested (GameController) by player", self.players.player[sid].name
-        reserved = self.board.request_tile(number, self.get_player(sid))
+        result = self.board.request_tile(number, self.get_player(sid))
         #success = self.board.tile[number].request(self.get_player(sid))
-        if reserved:
-            print "Tile succesfully reserved"
+        if result:
+            print "Tile succesfully reserved", result.id
         else:
             print "Tile could not be reserved"
-        return reserved
+        return result
 
     def choose_tile(self, something):
         print str(something), "I am the GameController"
@@ -30,8 +32,10 @@ class GameController():
         pass
 
     def add_player(self,sid):
-        new_player = self.players.add_new_player(sid)
-        print "New Player created: ", new_player.name
+        if (sid not in self.player) and (BD_MAX_PLAYERS > len(self.player)):
+            player_type = len(self.player) + 1
+            new_player = self.players.add_new_player(sid, player_type)
+            print "New Player created: ", new_player.name, new_player.type
 
     def get_player(self,sid):
         return self.players.player[sid]

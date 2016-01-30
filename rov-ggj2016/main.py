@@ -4,6 +4,7 @@ import logging
 from flask import Flask, render_template, request
 from flask_socketio import SocketIO, send, emit
 from gamecontroller import GameController
+import jsonpickle
 
 ############################
 ################### Init
@@ -83,8 +84,14 @@ def handle_tile_requested_event(json):
 @socketio.on("choose tile")
 def handle_tile_requested_event(data):
     print "event: choose tile", str(data['tile'])
-    success = gamecontroller.request_tile(data['tile'], request.sid)
-    emit("tile reserved",{'sucess': success})
+    result = gamecontroller.request_tile(data['tile'], request.sid)
+    result_json = jsonpickle.encode(result)
+    emit("choose tile result", result_json)
+    emit("board update", result_json, broadcast=True)
+
+@socketio.on("board reset")
+def handle_board_reset_event():
+    print "Board will be reseted"
 
 
 ############################

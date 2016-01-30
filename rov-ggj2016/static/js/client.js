@@ -13,8 +13,8 @@ var loadingSpinner = $('.loading'),
         });
     });
 
-		socket.on('tile reserved', function(msg) {
-			console.log(msg.data);
+		socket.on('choose tile result', function(msg) {
+			console.log(msg);
 			loadingSpinner.fadeOut();
 		});
 

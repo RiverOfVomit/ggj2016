@@ -9,7 +9,7 @@ var loadingSpinner = $('.loading'),
     socket = io.connect('http://' + document.domain + ':' + location.port + '/client');
 
 var spinnerIn = function() {
-    loadingSpinner.fadeIn();    
+    loadingSpinner.fadeIn();
 };
 
 var spinnerOut = function() {
@@ -17,7 +17,7 @@ var spinnerOut = function() {
 };
 
 var topBarIn = function() {
-    topBar.animate({top: "0"}, 500);    
+    topBar.animate({top: "0"}, 500);
 };
 
 var topBarOut = function() {
@@ -41,6 +41,19 @@ var createAudio = function(src) {
 spinnerIn(); // during initial load until player create event is returned
 
 socket.on('connect', function() {
+
+    uuid = localStorage.getItem('gameUniqueId');
+    if(uuid) {
+        console.log("uuid was found: ", uuid);
+    } else {
+        var randomlyGeneratedUID = Math.random().toString(36).substring(3,16) + +new Date;
+        localStorage.setItem('gameUniqueId', randomlyGeneratedUID);
+        uuid = localStorage.getItem('gameUniqueId')
+        console.debug("uuid was created: ", uuid);
+    }
+
+    socket.emit('register player', {'uuid': uuid});
+
     $(".mini-game-btn").click(function() {
       socket.emit('button pushed', {data: 'Button pushed!'});
     });
@@ -48,14 +61,17 @@ socket.on('connect', function() {
 
 // create player
 socket.on('player create result', function(msg) {
-  console.log(msg); //player object || false
-  if (msg === false) {
+
+  console.log("Player create result:",msg); //player object || false
+  if (msg == "false") {
     alert('maximale Spieleranzahl erreicht');
   }else{
-    var msgOb = jQuery.parseJSON(msg);
-    $('body').addClass('player-' + msgOb.type);
+    var player = jQuery.parseJSON(msg);
+    $('body').addClass('player-' + player.type);
+    $('.player-name').html(player.name);
     spinnerOut();
-  };  	
+  };
+
 });
 
 // choose tile

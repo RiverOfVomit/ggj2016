@@ -5,8 +5,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>BeeR - Player</title>
-
-    <link href="static/assets/css/bootstrap.min.css" rel="stylesheet">
+<!--
+    <link href="static/assets/css/bootstrap.min.css" rel="stylesheet">-->
     <link href="static/assets/css/game.css" rel="stylesheet">
 
 </head>
@@ -18,25 +18,30 @@
         </div>
 
     </div>
-    <div class="top-bar">       
+    <div class="top-bar">
         <div id="choose-tile">
             <form id="choose-tile-form">
+<<<<<<< HEAD
                 <p>Choose a number between 1-9</p>
                 <input type="text" placeholder="1-9">
+=======
+                <p>Choose a number between 1-6 (your name is <span class="player-name">You have no name!</span>)</p>
+                <input type="text" placeholder="1-6">
+>>>>>>> d63ba6fdec48995f5b6bd1852825b444c16a038a
                 <button type="submit" id="choose-tile-button" class="btn btn secondary choose-tile-button">Choose Ritual</button>
             </form>
-        </div>        
+        </div>
     </div>
 
-    <div id="mini-game" class="mini-game">    
+    <div id="mini-game" class="mini-game">
         <div class="mini-game-inner is-hidden">
             <h3>Perform the rituals to summon the mighty beer daemon</h3>
             <button class="btn btn-primary btn-lg mini-game-btn">
                 Perform rite
             </button>
         </div>
-            
-        
+
+
         <!-- <div class="counter">
         Push Button in : <span class="counter-num"></span>s
         </div> -->
@@ -45,7 +50,7 @@
 <!-- Debug helper -->
 <div id="debughelper" style="display:none">
     <button class="mini-game-btn">
-        Debug mini-game-btn 
+        Debug mini-game-btn
     </button>
 </div>
 

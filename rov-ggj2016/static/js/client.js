@@ -2,6 +2,7 @@
 	CLIENT
 -----------------------------------------------*/
 var loadingSpinner = $('.loading'),
+    topBbar = $('.top-bar'),
     socket = io.connect('http://' + document.domain + ':' + location.port);
 
 	socket.on('connect', function() {
@@ -31,8 +32,8 @@ $('#choose-tile-form').submit(function(){
     socket.emit('choose tile', { "tile": value });
 
     loadingSpinner.fadeIn();
-    // $(this).fadeOut('300');
-    // $('#mini-game').delay('200').fadeIn('300');
+    topBbar.animate({top: "-190px"}, 500);
+    $('.mini-game-btn').delay('200').fadeIn('300');
     // counter();
   }else{
     alert('Bitte Zahl eingeben');

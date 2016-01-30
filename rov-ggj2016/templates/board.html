@@ -1,33 +1,56 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Summon of BeeR- Board</title>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>BeeR - Board</title>
 
-    <link href="css/bootstrap.min.css" rel="stylesheet">
+	<link href="../static/assets/css/bootstrap.min.css" rel="stylesheet">
+	<link href="../static/assets/css/game.css" rel="stylesheet">
 
-  </head>
-  <body>
-    <h1>I´m the Board</h1>
-    <div id="messages">Here comes message:</div>
+</head>
+<body class="board">
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-xs-12">
+				<h1 class="text-center">I'm the Board</h1>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-xs-12 col-sm-6">
+				<h1>Board</h1>
+				<ul id="messages">Here comes message:</ul>
+				<table class="table table-bordered">
+					<tbody>
+						<tr>
+							<td>Tile 1</td>
+							<td>Tile 2</td>
+							<td>Tile 3</td>
+						</tr>
+						<tr>
+							<td>Tile 4</td>
+							<td>Tile 5</td>
+							<td>Tile 6</td>
+						</tr>
+						<tr>
+							<td>Tile 7</td>
+							<td>Tile 8</td>
+							<td>Tile 9</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+			<div class="col-xs-12 col-sm-6">
+				<h1>Daemon</h1>
+			</div>
+		</div>
+	</div>    
 
-    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-    <!-- Include all compiled plugins (below), or include individual files as needed -->
-    <script src="js/bootstrap.min.js"></script>
-    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/socket.io/1.3.6/socket.io.min.js"></script>
-    <script type="text/javascript" charset="utf-8">
-        var socket = io.connect('http://' + document.domain + ':' + location.port);
-        socket.on('connect', function() {
-            socket.emit('board connected', {data: 'Board connected!'});
-        });
-
-        socket.on('button pushed', function(msg) {
-            console.log(msg);
-            $('#messages').append($('<li>').text(msg.data));
-        });
-    </script>
-  </body>
+	<!-- scripts -->
+	<script type="text/javascript" src="../static/js/jquery-2.2.0.min.js"></script>    
+	<script type="text/javascript" src="../statics/js/bootstrap.min.js"></script> 
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/1.3.6/socket.io.min.js"></script>
+	<script type="text/javascript" src="../static/js/board.js"></script>
+</body>
 </html>

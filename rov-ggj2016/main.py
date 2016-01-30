@@ -64,17 +64,17 @@ def test():
 def handle_my_custom_event(json):
     print('Demo Event: ' + str(json))
 
-@socketio.on('disconnect', namespace='/client')
+@socketio.on('disconnect', namespace='/')
 def test_disconnect():
     print 'Something disconnected', request.sid
 
 ################### Board
 
-@socketio.on('board connected')
+@socketio.on('board connected', namespace='/server')
 def handle_client_connected_event(json):
     print('Board Connected: ' + str(json))
 
-@socketio.on("board reset")
+@socketio.on("board reset", namespace='/server')
 def handle_board_reset_event():
     print "Board will be reseted"
 
@@ -93,7 +93,7 @@ def handle_client_disconnected_event():
     gamecontroller.remove_player(request.sid)
     print 'Client disconnected', request.sid
 
-@socketio.on("choose tile")
+@socketio.on("choose tile", namespace='/client')
 def handle_tile_requested_event(data):
     print "event: choose tile", str(data['tile'])
     result = gamecontroller.request_tile(data['tile'], request.sid)
@@ -101,7 +101,7 @@ def handle_tile_requested_event(data):
     emit("choose tile result", result_json)
     emit("board update", result_json, broadcast=True)
 
-@socketio.on('button pushed')
+@socketio.on('button pushed', namespace='/client')
 def handle_button_pushed_event(json):
     print('Button pushed: ' + str(json))
     emit('button pushed', {'data': "Button was pushed by player " + request.sid}, broadcast=True)

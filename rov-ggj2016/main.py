@@ -78,7 +78,10 @@ def handle_board_connected_event():
 @socketio.on("board reset", namespace='/board')
 def handle_board_reset_event():
     print "Board will be reseted"
-
+    gamecontroller.reset_game_state()
+    all_players = jsonpickle.encode(gamecontroller.players,unpicklable=False)
+    update_board_event('update players', all_players)
+    
 def update_board_event(event, data):
     print "Board event:", event, data
     socketio.emit(event, data, namespace='/board')
@@ -92,16 +95,6 @@ def handle_client_connect_event():
     emit("player create result", jsonpickle.encode(result,unpicklable=False))
     all_players = jsonpickle.encode(gamecontroller.players,unpicklable=False)
     update_board_event('update players', all_players)
-
-'''
-@socketio.on('register player', namespace='/client')
-def handle_client_connect_event():
-    print 'Client Connected:', request.sid
-    result = gamecontroller.add_player(request.sid)
-    emit("player create result", jsonpickle.encode(result,unpicklable=False))
-    all_players = jsonpickle.encode(gamecontroller.players,unpicklable=False)
-    update_board_event('update players', all_players)
-'''
 
 @socketio.on('disconnect', namespace='/client')
 def handle_client_disconnected_event():

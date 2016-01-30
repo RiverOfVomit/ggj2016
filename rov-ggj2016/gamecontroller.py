@@ -5,15 +5,18 @@ from players import *
 from collections import deque
 
 BD_TILE_NUMBER = 9
-BD_OPEN_PLAYERS = deque([1,2,3])
+BD_OPEN_PLAYERS = [1,2,3]
 
 class GameController():
 
     def __init__(self):
-        #print "Starting GameController"
-
+        print "(Re)Starting GameController"
+        self.player_slots = deque(BD_OPEN_PLAYERS)
         self.players = Players()
         self.board = Board(BD_TILE_NUMBER)
+
+    def reset_game_state(self):
+        self.__init__()
 
     def request_tile(self, number, sid):
         print "Tile", number ,"requested (GameController) by player", self.players.player[sid].name
@@ -35,18 +38,18 @@ class GameController():
         #print "player len before pop", len(self.players.player)
         if (sid in self.players.player):
             removed_player = self.players.player.pop(sid, None)
-            BD_OPEN_PLAYERS.append(removed_player.type) # open up player slot
+            self.player_slots.append(removed_player.type) # open up player slot
             print removed_player.name, 'left the game'
         #print "player len after pop", len(self.players.player)
 
     def add_player(self,sid):
-        if (sid not in self.players.player) and (len(BD_OPEN_PLAYERS) > 0):
-            player_type = BD_OPEN_PLAYERS.popleft()
+        if (sid not in self.players.player) and (len(self.player_slots) > 0):
+            player_type = self.player_slots.popleft()
             new_player = self.players.add_new_player(sid, player_type)
             print "New Player created: ", new_player.name, new_player.type
             return new_player
         else:
-            print "NO new player was created"
+            print "NO new player was created", len(self.player_slots)
             return False
 
     def rp(self):

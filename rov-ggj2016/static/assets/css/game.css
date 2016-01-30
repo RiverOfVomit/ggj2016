@@ -46,11 +46,17 @@ body{
 	BOARD STYLE
 -----------------------------------------------*/
 body.board{
+	background: black url('/static/assets/img/beer_daemon.png') right bottom no-repeat;
+	background-size: contain;
 }
 
 .board-tbl{
-	width: 60%;
+	width: 50%;
 	background: black;
+	max-width: 750px;
+	position: absolute;
+	top: 80px;
+	left: 80px;
 }
 .board-tbl td{
 	width: 33%;
@@ -66,6 +72,7 @@ body.board{
 	height: 100%;
 	top: 50%;
 	left: 50%;
+	transform: translate(-50%, -50%);
 }
 .tile-1{
 	background: url('/static/assets/img/tile1.png');
@@ -103,20 +110,19 @@ body.board{
 	background: url('/static/assets/img/tile9.png');
 	background-size: cover;
 }
-.daemon-img{
-	position: absolute;
-	top: 50%;
-	right: 30px;
-	width: auto;
-	height: 80%;
-	margin-top: -40%;
-}
+
 /* -------------------------------------------
 	PLAYER STYLE
 -----------------------------------------------*/
 
 body.client{
 	background-color: black;
+}
+.player-1,
+.player-2,
+.player-3{
+	background: url('/static/assets/img/dude4.png') no-repeat -70px 125%;
+	background-size: 65%;
 }
 /* loading spinner */
 .loading{
@@ -179,22 +185,21 @@ body.client{
 }
 /* Mini game */
 .mini-game{
-	padding-top: 200px;
 	height: 100%;
 	position: relative;	
 }
 .mini-game-inner{
 	position: absolute;
-	bottom: 20%;
-	left: 50%;
-	margin-left: -30%;
+	top: 10%;
+	left: 0;
 	font-size: 30px;
+	padding: 0 15px;
 }
 .mini-game-btn{
 	border-radius: 0;
 	border: none;
 	background-color: purple;
-	width: 60%;
+	width: 80%;
 	height: 200px;
 	max-width: 500px;
 	margin-top: 50px;

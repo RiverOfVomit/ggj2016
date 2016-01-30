@@ -1,15 +1,21 @@
 /* -------------------------------------------
 	CLIENT
 -----------------------------------------------*/
-var socket = io.connect('http://' + document.domain + ':' + location.port);
+var loadingSpinner = $('.loading'),
+    socket = io.connect('http://' + document.domain + ':' + location.port);
 
 	socket.on('connect', function() {
         socket.emit('client connected', {data: 'Client connected!'});
-        $("#mini-game-btn").click(function() {
+        $(".mini-game-btn").click(function() {
           socket.emit('echo', {data: 'Echo-String-on-click'});
           socket.emit('button pushed', {data: 'Button pushed!'});
         });
     });
+
+		socket.on('tile reserved', function(msg) {
+			console.log(msg.data);
+			loadingSpinner.fadeOut();
+		});
 
 	// var socket = io.connect('http://' + document.domain + ':' + location.port);
     // socket.on('connect', function() {
@@ -23,26 +29,28 @@ $('#choose-tile-form').submit(function(){
 
   if (!value == '') {
     socket.emit('choose tile', { "tile": value });
-    $(this).fadeOut('300');
-    $('#mini-game').delay('200').fadeIn('300');
-    // counter();    
+
+    loadingSpinner.fadeIn();
+    // $(this).fadeOut('300');
+    // $('#mini-game').delay('200').fadeIn('300');
+    // counter();
   }else{
-    console.log('Bitte Zahl eingeben');  
+    alert('Bitte Zahl eingeben');
   }
   return false;
 });
 
 // create counter
-function counter(){
-	var num = Math.floor(Math.random()*5+1), // number between 1 and 5
-      numEl = $('.counter-num');
-      numEl.text(num);
+// function counter(){
+// 	var num = Math.floor(Math.random()*5+1), // number between 1 and 5
+//       numEl = $('.counter-num');
+//       numEl.text(num);
 
-for (i = num; i < cars.length; i--) { 
-    text += cars[i] + "<br>";
-}
+// for (i = num; i < cars.length; i--) {
+//     text += cars[i] + "<br>";
+// }
 
-  setTimeout(function(){ 
-    alert("countdown läuft"); }, 1000
-    );
-};
+//   setTimeout(function(){
+//     alert("countdown läuft"); }, 1000
+//     );
+// };

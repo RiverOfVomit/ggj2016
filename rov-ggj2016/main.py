@@ -75,16 +75,13 @@ def handle_my_custom_event(json):
 
 @socketio.on("Tile requested")
 def handle_tile_requested_event(json):
-	print request.sid, type(request.sid)
-	gamecontroller.request_tile(request.sid)
-
+    print request.sid, type(request.sid)
+    gamecontroller.request_tile(request.sid)
 
 @socketio.on("choose tile")
 def handle_tile_requested_event(something):
-	print "Choose tile request", str(something), "from main.py"
-	gamecontroller.choose_tile(something)
-
-
+    print "Choose tile request", str(something), "from main.py"
+    emit("tile reserved",{'data': 'Server generated event', 'count': 'count'})
 
 
 ############################

@@ -47,7 +47,7 @@ class GameController():
             return new_player
         else:
             print "NO new player was created"
-            return false
+            return False
 
     def rp(self):
         print "here delete now!"

@@ -1,6 +1,6 @@
 import os
 
-import logging
+#import logging
 from flask import Flask, render_template, request
 from flask_socketio import SocketIO, send, emit
 from gamecontroller import GameController
@@ -14,10 +14,9 @@ app = Flask(__name__)
 socketio = SocketIO(app)
 #print("starting up server")
 
-
 app.config.from_pyfile('flaskapp.cfg')
 
-app.logger.debug('starting up server LOGGER')
+#app.logger.debug('starting up server LOGGER')
 
 gamecontroller = GameController()
 
@@ -70,13 +69,17 @@ def test_disconnect():
 
 ################### Board
 
-@socketio.on('board connected', namespace='/server')
-def handle_client_connected_event(json):
-    print('Board Connected: ' + str(json))
+@socketio.on('connect', namespace='/board')
+def handle_board_connected_event():
+    print('Board Connected:', request.remote_addr)
 
-@socketio.on("board reset", namespace='/server')
+@socketio.on("board reset", namespace='/board')
 def handle_board_reset_event():
     print "Board will be reseted"
+
+def update_board_event(event, data):
+    print "Board event:", event, data
+    socketio.emit(event, data, namespace='/board')
 
 ################### Client
 
@@ -84,7 +87,9 @@ def handle_board_reset_event():
 def handle_client_connect_event():
     print 'Client Connected:', request.sid
     result = gamecontroller.add_player(request.sid)
-    emit("player create result", jsonpickle.encode(result))
+    emit("player create result", jsonpickle.encode(result,unpicklable=False))
+    all_players = jsonpickle.encode(gamecontroller.players,unpicklable=False)
+    update_board_event('update players', all_players)
 
 @socketio.on('disconnect', namespace='/client')
 def handle_client_disconnected_event():
@@ -97,9 +102,9 @@ def handle_client_disconnected_event():
 def handle_tile_requested_event(data):
     print "event: choose tile", str(data['tile'])
     result = gamecontroller.request_tile(data['tile'], request.sid)
-    result_json = jsonpickle.encode(result)
+    result_json = jsonpickle.encode(result,unpicklable=False)
     emit("choose tile result", result_json)
-    emit("board update", result_json, broadcast=True)
+    update_board_event('tile update',result_json)
 
 @socketio.on("resolve tile", namespace='/client')
 def handle_tile_requested_event(data):

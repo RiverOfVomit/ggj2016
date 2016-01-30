@@ -50,7 +50,7 @@ socket.on('player create result', function(msg) {
     var msgOb = jQuery.parseJSON(msg);
     $('body').addClass('player-' + msgOb.type);
     spinnerOut();
-  };  
+  };  	
 });
 
 // choose tile

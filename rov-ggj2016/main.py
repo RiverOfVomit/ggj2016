@@ -76,7 +76,10 @@ def handle_tile_requested_event(json):
 	print request.sid, type(request.sid)
 	gamecontroller.request_tile(request.sid)
 
-
+@socketio.on("choose tile")
+def handle_tile_requested_event(something):
+	print "Choose tile request", str(something), "from main.py"
+	gamecontroller.choose_tile(something)
 
 
 

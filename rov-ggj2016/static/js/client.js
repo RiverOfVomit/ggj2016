@@ -34,8 +34,8 @@ var gameOut = function() {
 };
 
 var createAudio = function(src) {
+    $('audio').remove();
     $('body').append('<audio src="'+ src +'" autoplay></audio>');
-    console.log('audio gehört?');
 };
 
 spinnerIn(); // during initial load until player create event is returned

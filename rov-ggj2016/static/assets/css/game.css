@@ -60,6 +60,7 @@ body.board{
 	position: absolute;
 	top: 80px;
 	left: 80px;
+	border-spacing: 0
 }
 .board-tbl td{
 	width: 33%;

@@ -1,19 +1,20 @@
+from flask import Flask, render_template, request
+from flask_socketio import SocketIO, send, emit
+from gamecontroller import GameController
 
-from flask import Flask, render_template
-from flask_socketio import SocketIO
-from flask_socketio import send, emit
 
 ############################
 ################### Init
 ############################
 
 app = Flask(__name__)
-
+socketio = SocketIO(app)
 print("starting up server")
 
 app.config.from_pyfile('flaskapp.cfg')
 
-socketio = SocketIO(app)
+gamecontroller = GameController()
+
 
 ############################
 ################### Routes
@@ -46,6 +47,36 @@ def serveStaticResource(resource):
 @app.route("/test")
 def test():
     return "<strong>It's Alive!</strong>"
+
+############################
+################### Events
+############################
+
+print "EVENTS!!!"
+
+@socketio.on('client connected')
+def handle_client_connected_event(json):
+    print('Client Connected: ' + str(json))
+
+@socketio.on('board connected')
+def handle_client_connected_event(json):
+    print('Board Connected: ' + str(json))
+
+@socketio.on('button pushed')
+def handle_button_pushed_event(json):
+    print('Button pushed: ' + str(json))
+    emit('button pushed', {'data': "Button was pushed!"}, broadcast=True)
+
+@socketio.on('my event')
+def handle_my_custom_event(json):
+    print('Demo Event: ' + str(json))
+
+@socketio.on("Tile requested")
+def handle_tile_requested_event(json):
+	print request.sid, type(request.sid)
+	gamecontroller.request_tile(request.sid)
+
+
 
 
 

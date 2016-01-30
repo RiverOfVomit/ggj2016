@@ -1,8 +1,12 @@
 """Events"""
+from flask_socketio import SocketIO, send, emit
+from main import socketio
 
 ############################
 ################### Events
 ############################
+
+print "EVENTS!!!"
 
 @socketio.on('client connected')
 def handle_client_connected_event(json):
@@ -20,3 +24,10 @@ def handle_button_pushed_event(json):
 @socketio.on('my event')
 def handle_my_custom_event(json):
     print('Demo Event: ' + str(json))
+
+@socketio.on("Tile requested")
+def handle_my_custom_event(json):
+	print("Tile requested" + str(json))
+
+
+

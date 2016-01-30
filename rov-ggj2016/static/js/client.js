@@ -6,7 +6,7 @@ var loadingSpinner = $('.loading'),
 
 	socket.on('connect', function() {
         socket.emit('client connected', {data: 'Client connected!'});
-        $("#mini-game-btn").click(function() {
+        $(".mini-game-btn").click(function() {
           socket.emit('echo', {data: 'Echo-String-on-click'});
           socket.emit('button pushed', {data: 'Button pushed!'});
         });

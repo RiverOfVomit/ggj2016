@@ -5,6 +5,7 @@ var loadingSpinner = $('.loading'),
     topBar = $('.top-bar'),
     game = $('.mini-game-inner'),
     gameBtn = $('.mini-game-btn'),
+    soundBottle = 'static/assets/sound/open-bottle.mp3',
     socket = io.connect('http://' + document.domain + ':' + location.port + '/client');
 
 var spinnerIn = function() {
@@ -32,6 +33,10 @@ var gameOut = function() {
     game.fadeOut('300');
 };
 
+var createAudio = function(src) {
+    $('body').append('<audio src="'+ src +'" autoplay></audio>');
+    console.log('audio gehört?');
+};
 
 spinnerIn(); // during initial load until player create event is returned
 
@@ -59,6 +64,8 @@ $('#choose-tile-form').submit(function(){
   console.log(value);
 
   if (!value == '') {
+    // sound test
+    createAudio(soundBottle);
     socket.emit('choose tile', { "tile": value });
     spinnerIn();
 

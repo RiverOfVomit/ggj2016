@@ -66,8 +66,9 @@ socket.on('player create result', function(msg) {
   if (msg == "false") {
     alert('maximale Spieleranzahl erreicht');
   }else{
-    var msgOb = jQuery.parseJSON(msg);
-    $('body').addClass('player-' + msgOb.type);
+    var player = jQuery.parseJSON(msg);
+    $('body').addClass('player-' + player.type);
+    $('.player-name').html(player.name);
     spinnerOut();
   };
 

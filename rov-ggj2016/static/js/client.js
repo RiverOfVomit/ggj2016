@@ -12,6 +12,11 @@ var loadingSpinner = $('.loading'),
         });
     });
 
+		socket.on('my response', function(msg) {
+			console.log(msg);
+			loadingSpinner.fadeOut();
+		});
+
 	// var socket = io.connect('http://' + document.domain + ':' + location.port);
     // socket.on('connect', function() {
     //     socket.emit('echo', {data: 'Echo-String-on-connect'});
@@ -24,12 +29,13 @@ $('#choose-tile-form').submit(function(){
 
   if (!value == '') {
     socket.emit('choose tile', { "tile": value });
+
     loadingSpinner.fadeIn();
     // $(this).fadeOut('300');
     // $('#mini-game').delay('200').fadeIn('300');
-    // counter();    
+    // counter();
   }else{
-    alert('Bitte Zahl eingeben'); 
+    alert('Bitte Zahl eingeben');
   }
   return false;
 });
@@ -40,11 +46,11 @@ $('#choose-tile-form').submit(function(){
 //       numEl = $('.counter-num');
 //       numEl.text(num);
 
-// for (i = num; i < cars.length; i--) { 
+// for (i = num; i < cars.length; i--) {
 //     text += cars[i] + "<br>";
 // }
 
-//   setTimeout(function(){ 
+//   setTimeout(function(){
 //     alert("countdown läuft"); }, 1000
 //     );
 // };

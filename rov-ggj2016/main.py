@@ -1,3 +1,5 @@
+import os
+
 from flask import Flask, render_template, request
 from flask_socketio import SocketIO, send, emit
 from gamecontroller import GameController
@@ -65,7 +67,7 @@ def handle_client_connected_event(json):
 @socketio.on('button pushed')
 def handle_button_pushed_event(json):
     print('Button pushed: ' + str(json))
-    emit('button pushed', {'data': "Button was pushed!"}, broadcast=True)
+    emit('button pushed', {'data': "Button was pushed by player " + request.sid}, broadcast=True)
 
 @socketio.on('my event')
 def handle_my_custom_event(json):
@@ -77,12 +79,20 @@ def handle_tile_requested_event(json):
 	gamecontroller.request_tile(request.sid)
 
 
+@socketio.on("choose tile")
+def handle_tile_requested_event(something):
+	print "Choose tile request", str(something), "from main.py"
+	gamecontroller.choose_tile(something)
+
 
 
 
 ############################
 ################### Run
-############################
+###########################
+
+port = int(os.environ.get('ROVPORT',8080))
 
 if __name__ == '__main__':
-    socketio.run(app,'0.0.0.0',8080)
+
+    socketio.run(app,'0.0.0.0',port)

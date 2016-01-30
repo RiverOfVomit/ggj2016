@@ -1,3 +1,5 @@
+import os
+
 from flask import Flask, render_template, request
 from flask_socketio import SocketIO, send, emit
 from gamecontroller import GameController
@@ -77,12 +79,12 @@ def handle_tile_requested_event(json):
 	gamecontroller.request_tile(request.sid)
 
 
-
-
-
 ############################
 ################### Run
-############################
+###########################
+
+port = int(os.environ.get('ROVPORT',8080))
 
 if __name__ == '__main__':
-    socketio.run(app,'0.0.0.0',8080)
+    socketio.run(app,'0.0.0.0',port)
+

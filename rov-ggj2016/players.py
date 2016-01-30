@@ -17,5 +17,5 @@ class Player(object):
     def __init__(self, sid, player_type):
     	print "Creating new Player"
         self.sid = sid
-        self.name = random.choice(BD_PLAYER_NAMES) + ' ' +  str(random.randint(1, 100))
+        self.name = random.choice(BD_PLAYER_NAMES) + str(random.randint(1, 100))
         self.type = player_type

@@ -20,6 +20,19 @@ var spinnerOut = function() {
 spinnerIn(); // during initial load until player create event is returned
 
 socket.on('connect', function() {
+
+    uuid = localStorage.getItem('gameUniqueId');
+    if(uuid) {
+        console.log("uuid was found: ", uuid);
+    } else {
+        var randomlyGeneratedUID = Math.random().toString(36).substring(3,16) + +new Date;
+        localStorage.setItem('gameUniqueId', randomlyGeneratedUID);
+        uuid = localStorage.getItem('gameUniqueId')
+        console.debug("uuid was created: ", uuid);
+    }
+
+    socket.emit('register player', {'uuid': uuid});
+
     $(".mini-game-btn").click(function() {
       socket.emit('echo', {data: 'Echo-String-on-click'});
       socket.emit('button pushed', {data: 'Button pushed!'});
@@ -32,9 +45,15 @@ socket.on('choose tile result', function(msg) {
 });
 
 socket.on('player create result', function(msg) {
-	console.log(msg); //player object || false
-    console.log(msg.sid);
-	spinnerOut();
+    result = jQuery.parseJSON(msg);
+    console.log(result)
+
+    if(result.name) {
+        console.log(result.name); //player object || false
+        $('.player-name').html(result.name);
+    }
+    spinnerOut();
+
 });
 
 // choose tile

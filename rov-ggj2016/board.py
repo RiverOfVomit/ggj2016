@@ -19,15 +19,12 @@ class Board(object):
 
 		print len(self.tiles)
 
-	def send_to_board(self, config):
-		"""Send config to board.html, so tiles will be generated"""
-		pass
-
 
 	def update_tiles(self):
 		pass
 
 
+
+#TESTS
 tc = Board()
 tc.initalize_tiles(tc.config)
-print tc.tiles

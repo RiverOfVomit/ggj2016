@@ -4,6 +4,7 @@ import logging
 from flask import Flask, render_template, request
 from flask_socketio import SocketIO, send, emit
 from gamecontroller import GameController
+import jsonpickle
 
 ############################
 ################### Init
@@ -57,35 +58,56 @@ def test():
 ################### Events
 ############################
 
-@socketio.on('client connected')
-def handle_client_connected_event(json):
-    print('Client Connected: ' + str(json))
-    gamecontroller.add_player(request.sid)
-
-@socketio.on('board connected')
-def handle_client_connected_event(json):
-    print('Board Connected: ' + str(json))
-
-@socketio.on('button pushed')
-def handle_button_pushed_event(json):
-    print('Button pushed: ' + str(json))
-    emit('button pushed', {'data': "Button was pushed by player " + request.sid}, broadcast=True)
+################### General
 
 @socketio.on('my event')
 def handle_my_custom_event(json):
     print('Demo Event: ' + str(json))
 
+@socketio.on('disconnect')
+def test_disconnect():
+    print 'Something disconnected', request.sid
+
+################### Board
+
+@socketio.on('board connected')
+def handle_client_connected_event(json):
+    print('Board Connected: ' + str(json))
+
+@socketio.on("board reset")
+def handle_board_reset_event():
+    print "Board will be reseted"
+
+################### Client
+
+@socketio.on('connected', namespace='/client')
+def handle_client_connected_event(json):
+    print 'Client Connected:', str(json), request.sid
+    gamecontroller.add_player(request.sid)
+
+@socketio.on('disconnect', namespace='/client')
+def test_disconnect():
+    print 'Client disconnected', request.sid
+
+'''
 @socketio.on("Tile requested")
 def handle_tile_requested_event(json):
     print request.sid, type(request.sid)
     gamecontroller.request_tile(request.sid)
+'''
 
 @socketio.on("choose tile")
 def handle_tile_requested_event(data):
     print "event: choose tile", str(data['tile'])
-    success = gamecontroller.request_tile(data['tile'], request.sid)
-    emit("tile reserved",{'sucess': success})
+    result = gamecontroller.request_tile(data['tile'], request.sid)
+    result_json = jsonpickle.encode(result)
+    emit("choose tile result", result_json)
+    emit("board update", result_json, broadcast=True)
 
+@socketio.on('button pushed')
+def handle_button_pushed_event(json):
+    print('Button pushed: ' + str(json))
+    emit('button pushed', {'data': "Button was pushed by player " + request.sid}, broadcast=True)
 
 ############################
 ################### Run

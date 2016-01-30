@@ -3,18 +3,18 @@
 -----------------------------------------------*/
 var loadingSpinner = $('.loading'),
     topBbar = $('.top-bar'),
-    socket = io.connect('http://' + document.domain + ':' + location.port);
+    socket = io.connect('http://' + document.domain + ':' + location.port + '/client');
 
 	socket.on('connect', function() {
-        socket.emit('client connected', {data: 'Client connected!'});
+        socket.emit('connected', {data: 'Client connected!'});
         $(".mini-game-btn").click(function() {
           socket.emit('echo', {data: 'Echo-String-on-click'});
           socket.emit('button pushed', {data: 'Button pushed!'});
         });
     });
 
-		socket.on('tile reserved', function(msg) {
-			console.log(msg.data);
+		socket.on('choose tile result', function(msg) {
+			console.log(msg);
 			loadingSpinner.fadeOut();
 		});
 

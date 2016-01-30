@@ -11,6 +11,7 @@
 
 </head>
 <body class="board">
+
 	<ul id="messages">Here comes message:</ul>
 	<table class="board-tbl">
 		<tbody>
@@ -68,9 +69,15 @@
 		</tbody>
 	</table>   
 	<img src="static/assets/img/beer_daemon.png" class="daemon-img">
+
+	<!-- Debug helper -->
+	<div id="debughelper" style="display:block">
+	    <button class="reset-btn">Reset Game</button>
+	</div>
+
 	<!-- scripts -->
-	<script type="text/javascript" src="static/js/jquery-2.2.0.min.js"></script>    
-	<script type="text/javascript" src="statics/js/bootstrap.min.js"></script> 
+	<script type="text/javascript" src="static/js/jquery-2.2.0.min.js"></script>
+	<script type="text/javascript" src="statics/js/bootstrap.min.js"></script>
 	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/1.3.6/socket.io.min.js"></script>
 	<script type="text/javascript" src="static/js/board.js"></script>
 </body>

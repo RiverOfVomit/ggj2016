@@ -10,18 +10,26 @@
     <link href="../static/assets/css/game.css" rel="stylesheet">
 
 </head>
-<body class="client">
+<body class="client text-center">
     <div class="container-fluid">
         <div class="row">
             <div class="col-xs-12">
-                <h1>I'm the Client</h1>
-                <div class="counter">
-                    Push Button in : <span></span>
+                <div id="choose-tile">
+                    <form id="choose-tile-form">
+                        <input type="text" placeholder="1b">
+                        <button type="submit" id="choose-tile-button" class="btn btn secondary">choose game</button>
+                    </form>
                 </div>
+                <div id="mini-game" class="is-hidden">
+                    <h1>I'm the Client</h1>
+                    <div class="counter">
+                        Push Button in : <span class="counter-num"></span>s
+                    </div>
 
-                <button class="btn btn-primary btn-lg" id="mini-game-btn">
-                    button
-                </button>
+                    <button class="btn btn-primary btn-lg" id="mini-game-btn">
+                        button
+                    </button>
+                </div>
             </div>
         </div>
     </div>

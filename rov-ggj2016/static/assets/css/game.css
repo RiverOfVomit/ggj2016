@@ -21,6 +21,7 @@ body{
 	font-family: shadows_into_lightregular, sans-serif;
 	position: relative;
 	height: 100%;
+	color: white;
 }
 
 .is-hidden{
@@ -120,6 +121,13 @@ body.client{
 	height: 100%;
 	position: relative;	
 }
+.mini-game-inner{
+	position: absolute;
+	bottom: 20%;
+	left: 50%;
+	margin-left: -30%;
+	font-size: 30px;
+}
 .mini-game-btn{
 	border-radius: 0;
 	border: none;
@@ -127,10 +135,7 @@ body.client{
 	width: 60%;
 	height: 200px;
 	max-width: 500px;
-	position: absolute;
-	bottom: 20%;
-	left: 50%;
-	margin-left: -30%;
+	margin-top: 50px;
 	font-size: 30px;
 }
 

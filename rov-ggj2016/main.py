@@ -1,9 +1,9 @@
 import os
 
+import logging
 from flask import Flask, render_template, request
 from flask_socketio import SocketIO, send, emit
 from gamecontroller import GameController
-
 
 ############################
 ################### Init
@@ -11,9 +11,12 @@ from gamecontroller import GameController
 
 app = Flask(__name__)
 socketio = SocketIO(app)
-print("starting up server")
+#print("starting up server")
+
 
 app.config.from_pyfile('flaskapp.cfg')
+
+app.logger.debug('starting up server LOGGER')
 
 gamecontroller = GameController()
 

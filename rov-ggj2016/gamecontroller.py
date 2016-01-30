@@ -8,7 +8,7 @@ BD_TILE_NUMBER = 9
 class GameController():
 
     def __init__(self):
-        print "Starting GameController"
+        #print "Starting GameController"
 
         self.players = Players()
         self.board = Board(BD_TILE_NUMBER)

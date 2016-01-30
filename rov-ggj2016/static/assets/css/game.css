@@ -23,6 +23,7 @@ body{
 	background-color: black;
 	height: 100%;
 	color: white;
+	margin: 0;
 }
 button:focus, input:focus{
 	outline: none;

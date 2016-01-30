@@ -172,16 +172,16 @@ body.client{
     background: #C04545;
     border: none;
     color: #000;
-
+    border-radius: 20px;
 }
 
 .choose-tile-button{
 	font-size: 30px;
     padding: 10px;
     border: none;
-    border-radius: 0;
     position: relative;
     top: -7px;
+    border-radius: 20px;
 }
 /* Mini game */
 .mini-game{
@@ -196,9 +196,9 @@ body.client{
 	padding: 0 15px;
 }
 .mini-game-btn{
-	border-radius: 0;
+	border-radius: 50px;
 	border: none;
-	background-color: purple;
+	background-color: #940202;
 	width: 80%;
 	height: 200px;
 	max-width: 500px;

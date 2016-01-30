@@ -8,8 +8,8 @@ class Players(object):
     	print "Creating Players bucket"
         self.player = {}
 
-    def add_new_player(self,sid):
-        self.player[sid] = Player(sid)
+    def add_new_player(self,sid,player_type):
+        self.player[sid] = Player(sid,player_type)
         return self.player[sid]
 
 class Player(object):

@@ -101,6 +101,10 @@ def handle_tile_requested_event(data):
     emit("choose tile result", result_json)
     emit("board update", result_json, broadcast=True)
 
+@socketio.on("resolve tile", namespace='/client')
+def handle_tile_requested_event(data):
+    pass
+
 @socketio.on('button pushed', namespace='/client')
 def handle_button_pushed_event(json):
     print('Button pushed: ' + str(json))

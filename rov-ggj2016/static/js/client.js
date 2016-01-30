@@ -6,6 +6,8 @@ var loadingSpinner = $('.loading'),
     game = $('.mini-game-inner'),
     gameBtn = $('.mini-game-btn'),
     soundBottle = 'static/assets/sound/open-bottle.mp3',
+    soundSend = 'static/assets/sound/send.mp3',
+    soundNegative = 'static/assets/sound/negative1.mp3',
     socket = io.connect('http://' + document.domain + ':' + location.port + '/client');
 
 var spinnerIn = function() {
@@ -87,7 +89,9 @@ $('#choose-tile-form').submit(function(){
 
     // counter();
   }else{
-    alert('Bitte Zahl eingeben');
+    createAudio(soundNegative);
+    $('#choose-tile-form p').hide().fadeIn("300");
+    console.log('Bitte Zahl eingeben');
   }
   return false;
 });
@@ -102,6 +106,7 @@ socket.on('choose tile result', function(msg) {
 
 // resolve tile
 gameBtn.click(function(){
+  createAudio(soundSend);
   socket.emit('resolve tile', { "gameResolved": true });
   gameOut();
   topBarIn();

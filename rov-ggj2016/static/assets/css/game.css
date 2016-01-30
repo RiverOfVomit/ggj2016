@@ -71,6 +71,9 @@ body.board{
 	font-size: 30px;
 	position: relative;
 }
+.board-tbl .reserved{
+	background-color: gray;
+}
 .board-tbl-inner{
 	position: absolute;
 	width: 100%;

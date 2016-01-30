@@ -2,21 +2,27 @@
 	BOARD
 -----------------------------------------------*/
 
-var socket = io.connect('http://' + document.domain + ':' + location.port + '/board');
+var socket = io.connect('http://' + document.domain + ':' + location.port + '/board'),
+	board = $('.board-tbl');
 
 socket.on('connect', function() {
     //socket.emit('board connected', {data: 'Board connected!'});
 });
 
 socket.on('button pushed', function(msg) {
-    console.log(msg);
+    console.log('button pushed' + msg);
     $('#messages').append($('<li>').text(msg.data));
 });
 
+// update board
 socket.on('tile update', function(msg) {
     result = jQuery.parseJSON(msg)
     if (result.player) {
-        console.log(result);
+        console.log('tile update ' + result);
+        if (result.state == 'reserved') {
+        	board.find('.tile-' + result.id).addClass('reserved');
+        };
+        
     } else {
         console.log("no player found");
     };

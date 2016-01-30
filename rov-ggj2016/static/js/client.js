@@ -33,6 +33,7 @@ socket.on('choose tile result', function(msg) {
 
 socket.on('player create result', function(msg) {
 	console.log(msg); //player object || false
+    console.log(msg.sid);
 	spinnerOut();
 });
 

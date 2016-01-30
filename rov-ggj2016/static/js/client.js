@@ -9,7 +9,7 @@ var loadingSpinner = $('.loading'),
     socket = io.connect('http://' + document.domain + ':' + location.port + '/client');
 
 var spinnerIn = function() {
-    loadingSpinner.fadeIn();    
+    loadingSpinner.fadeIn();
 };
 
 var spinnerOut = function() {
@@ -17,7 +17,7 @@ var spinnerOut = function() {
 };
 
 var topBarIn = function() {
-    topBar.animate({top: "0"}, 500);    
+    topBar.animate({top: "0"}, 500);
 };
 
 var topBarOut = function() {
@@ -62,14 +62,14 @@ socket.on('connect', function() {
 // create player
 socket.on('player create result', function(msg) {
 
-  console.log(msg); //player object || false
-  if (msg === false) {
+  console.log("Player create result:",msg); //player object || false
+  if (msg == "false") {
     alert('maximale Spieleranzahl erreicht');
   }else{
     var msgOb = jQuery.parseJSON(msg);
     $('body').addClass('player-' + msgOb.type);
     spinnerOut();
-  };  	
+  };
 
 });
 

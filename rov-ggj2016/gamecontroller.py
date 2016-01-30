@@ -2,10 +2,11 @@
 
 from board import Board
 from players import *
-from pprint import pprint
+from collections import deque
 
 BD_TILE_NUMBER = 9
 BD_MAX_PLAYERS = 3
+BD_OPEN_PLAYERS = deque([1,2,3])
 
 class GameController():
 
@@ -31,13 +32,24 @@ class GameController():
     def check_board_size(self):
         pass
 
+    def remove_player(self,sid):
+        #print "player len before pop", len(self.players.player)
+        if (sid in self.players.player):
+            removed_player = self.players.player.pop(sid, None)
+            BD_OPEN_PLAYERS.append(removed_player.type) # open up player slot
+            print removed_player.name, 'left the game'
+        #print "player len after pop", len(self.players.player)
+
     def add_player(self,sid):
-        if (sid not in self.players.player) and (BD_MAX_PLAYERS > len(self.players.player)):
-            player_type = len(self.players.player) + 1
+        if (sid not in self.players.player) and (len(BD_OPEN_PLAYERS) > 0):
+            player_type = BD_OPEN_PLAYERS.popleft()
             new_player = self.players.add_new_player(sid, player_type)
             print "New Player created: ", new_player.name, new_player.type
         else:
             print "no new player was created"
+
+    def rp(self):
+        print "here delete now!"
 
     def get_player(self,sid):
         return self.players.player[sid]

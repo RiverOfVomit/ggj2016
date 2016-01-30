@@ -64,7 +64,7 @@ def test():
 def handle_my_custom_event(json):
     print('Demo Event: ' + str(json))
 
-@socketio.on('disconnect')
+@socketio.on('disconnect', namespace='/client')
 def test_disconnect():
     print 'Something disconnected', request.sid
 
@@ -86,15 +86,11 @@ def handle_client_connected_event(json):
     gamecontroller.add_player(request.sid)
 
 @socketio.on('disconnect', namespace='/client')
-def test_disconnect():
+def handle_client_disconnected_event():
+    #gamecontroller.remove_player(request.sid)
+    #gamecontroller.get_player(request.sid)
+    gamecontroller.remove_player(request.sid)
     print 'Client disconnected', request.sid
-
-'''
-@socketio.on("Tile requested")
-def handle_tile_requested_event(json):
-    print request.sid, type(request.sid)
-    gamecontroller.request_tile(request.sid)
-'''
 
 @socketio.on("choose tile")
 def handle_tile_requested_event(data):

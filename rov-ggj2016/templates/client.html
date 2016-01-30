@@ -15,11 +15,12 @@
         <div class="row">
             <div class="col-xs-12">
                 <div id="choose-tile">
-                    <input type="text" placeholder="1b">
-                    <button id="choose-tile-button" class="btn btn secondary">choose game</button>
-                    
+                    <form id="choose-tile-form">
+                        <input type="text" placeholder="1b">
+                        <button type="submit" id="choose-tile-button" class="btn btn secondary">choose game</button>
+                    </form>
                 </div>
-                <div id="mini-game">
+                <div id="mini-game" class="is-hidden">
                     <h1>I'm the Client</h1>
                     <div class="counter">
                         Push Button in : <span class="counter-num"></span>s

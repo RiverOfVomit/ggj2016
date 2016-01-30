@@ -17,19 +17,19 @@ var socket = io.connect('http://' + document.domain + ':' + location.port);
     // });
 
 // choose tile
-$('#choose-tile-button').click(function(){
-  var el = $('#choose-tile'),
-      value = el.find('input').val();
+$('#choose-tile-form').submit(function(){
+  var value = $(this).find('input').val();
   console.log(value);
 
   if (!value == '') {
     socket.emit('choose tile', { "tile": value });
-    // el.fadeOut('300');
-    // $('#mini-game').delay('200').fadeIn('300');
+    $(this).fadeOut('300');
+    $('#mini-game').delay('200').fadeIn('300');
     // counter();    
   }else{
-    console.log('Bitte Zahl eingeben');
-  };  
+    console.log('Bitte Zahl eingeben');  
+  }
+  return false;
 });
 
 // create counter
@@ -38,11 +38,11 @@ function counter(){
       numEl = $('.counter-num');
       numEl.text(num);
 
-// for (i = num; i < cars.length; i--) { 
-//     text += cars[i] + "<br>";
-// }
+for (i = num; i < cars.length; i--) { 
+    text += cars[i] + "<br>";
+}
 
-  // setTimeout(function(){ 
-  //   alert("countdown läuft"); }, 1000
-  //   );
+  setTimeout(function(){ 
+    alert("countdown läuft"); }, 1000
+    );
 };

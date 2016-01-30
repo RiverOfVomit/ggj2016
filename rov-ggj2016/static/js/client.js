@@ -5,7 +5,7 @@ var socket = io.connect('http://' + document.domain + ':' + location.port);
 
 	socket.on('connect', function() {
         socket.emit('client connected', {data: 'Client connected!'});
-        $("#mini-game-btn").click(function() {
+        $(".mini-game-btn").click(function() {
           socket.emit('echo', {data: 'Echo-String-on-click'});
           socket.emit('button pushed', {data: 'Button pushed!'});
         });
@@ -25,9 +25,9 @@ $('#choose-tile-form').submit(function(){
     socket.emit('choose tile', { "tile": value });
     $(this).fadeOut('300');
     $('#mini-game').delay('200').fadeIn('300');
-    // counter();    
+    // counter();
   }else{
-    console.log('Bitte Zahl eingeben');  
+    console.log('Bitte Zahl eingeben');
   }
   return false;
 });
@@ -38,11 +38,11 @@ function counter(){
       numEl = $('.counter-num');
       numEl.text(num);
 
-for (i = num; i < cars.length; i--) { 
+for (i = num; i < cars.length; i--) {
     text += cars[i] + "<br>";
 }
 
-  setTimeout(function(){ 
+  setTimeout(function(){
     alert("countdown läuft"); }, 1000
     );
 };

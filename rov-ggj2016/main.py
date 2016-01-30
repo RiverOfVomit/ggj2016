@@ -80,10 +80,11 @@ def handle_board_reset_event():
 
 ################### Client
 
-@socketio.on('connected', namespace='/client')
-def handle_client_connected_event(json):
-    print 'Client Connected:', str(json), request.sid
-    gamecontroller.add_player(request.sid)
+@socketio.on('connect', namespace='/client')
+def handle_client_connect_event():
+    print 'Client Connected:', request.sid
+    result = gamecontroller.add_player(request.sid)
+    emit("player create result", jsonpickle.encode(result))
 
 @socketio.on('disconnect', namespace='/client')
 def handle_client_disconnected_event():

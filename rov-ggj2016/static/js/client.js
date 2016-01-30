@@ -5,23 +5,36 @@ var loadingSpinner = $('.loading'),
     topBbar = $('.top-bar'),
     socket = io.connect('http://' + document.domain + ':' + location.port + '/client');
 
-	socket.on('connect', function() {
-        socket.emit('connected', {data: 'Client connected!'});
-        $(".mini-game-btn").click(function() {
-          socket.emit('echo', {data: 'Echo-String-on-click'});
-          socket.emit('button pushed', {data: 'Button pushed!'});
-        });
+var spinnerIn = function() {
+    loadingSpinner.fadeIn();
+    topBbar.animate({top: "-190px"}, 500);
+    $('.mini-game-inner ').delay('200').fadeIn('300');
+};
+
+var spinnerOut = function() {
+    $('.mini-game-inner ').delay('200').fadeOut('300');
+    topBbar.animate({top: "0"}, 500);
+    loadingSpinner.fadeOut();
+};
+
+spinnerIn(); // during initial load until player create event is returned
+
+socket.on('connect', function() {
+    $(".mini-game-btn").click(function() {
+      socket.emit('echo', {data: 'Echo-String-on-click'});
+      socket.emit('button pushed', {data: 'Button pushed!'});
     });
+});
 
-		socket.on('choose tile result', function(msg) {
-			console.log(msg);
-			loadingSpinner.fadeOut();
-		});
+socket.on('choose tile result', function(msg) {
+	console.log(msg);
+	spinnerOut();
+});
 
-	// var socket = io.connect('http://' + document.domain + ':' + location.port);
-    // socket.on('connect', function() {
-    //     socket.emit('echo', {data: 'Echo-String-on-connect'});
-    // });
+socket.on('player create result', function(msg) {
+	console.log(msg);
+	spinnerOut();
+});
 
 // choose tile
 $('#choose-tile-form').submit(function(){
@@ -30,10 +43,8 @@ $('#choose-tile-form').submit(function(){
 
   if (!value == '') {
     socket.emit('choose tile', { "tile": value });
+    spinnerIn();
 
-    loadingSpinner.fadeIn();
-    topBbar.animate({top: "-190px"}, 500);
-    $('.mini-game-inner ').delay('200').fadeIn('300');
     // counter();
   }else{
     alert('Bitte Zahl eingeben');

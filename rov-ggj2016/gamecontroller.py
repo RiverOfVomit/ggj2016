@@ -5,7 +5,6 @@ from players import *
 from collections import deque
 
 BD_TILE_NUMBER = 9
-BD_MAX_PLAYERS = 3
 BD_OPEN_PLAYERS = deque([1,2,3])
 
 class GameController():
@@ -45,8 +44,10 @@ class GameController():
             player_type = BD_OPEN_PLAYERS.popleft()
             new_player = self.players.add_new_player(sid, player_type)
             print "New Player created: ", new_player.name, new_player.type
+            return new_player
         else:
-            print "no new player was created"
+            print "NO new player was created"
+            return false
 
     def rp(self):
         print "here delete now!"

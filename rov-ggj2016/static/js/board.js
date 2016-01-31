@@ -24,9 +24,18 @@ socket.on('tiles update', function(msg) {
     //reset board
     board.find('td').removeClass('open reserved resolved solved')
     $.each(tiles, function(i,key, value){
-    	var obj = tiles[i],
-    		tileId = obj.id,
-    		state = obj.state;
+    	var tile = tiles[i],
+    		tileId = tile.id,
+    		state = tile.state;
+            if(tile.playersid) {
+                console.log("Found tile with payer sid:",tile.playersid);
+                if(player=players.player[tile.playersid]) {
+                    console.log("Found correspodning player",player);
+                    board.find('.tile-' + tileId).addClass("player-" + player.type);
+                } else {
+                    console.log("No player found. maybe disconnected");
+                }
+            }
     	board.find('.tile-' + tileId).addClass(state);
     });
 });

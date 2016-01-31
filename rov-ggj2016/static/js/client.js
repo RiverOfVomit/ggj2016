@@ -64,19 +64,6 @@ var initializeClientStuff = function() {
     spinnerIn(); // during initial load until player create event is returned
 
     socket.on('connect', function() {
-    /*
-        uuid = localStorage.getItem('gameUniqueId');
-        if(uuid) {
-            console.log("uuid was found: ", uuid);
-        } else {
-            var randomlyGeneratedUID = Math.random().toString(36).substring(3,16) + +new Date;
-            localStorage.setItem('gameUniqueId', randomlyGeneratedUID);
-            uuid = localStorage.getItem('gameUniqueId')
-            console.debug("uuid was created: ", uuid);
-        }
-        socket.emit('register player', {'uuid': uuid});
-    */
-
         $(".mini-game-btn").click(function() {
           socket.emit('button pushed', {data: 'Button pushed!'});
         });
@@ -84,9 +71,10 @@ var initializeClientStuff = function() {
 
     socket.on('logoff', function() {
         console.log('logoff was send!');
-        $('.daemon-login').modal('show');
         socket.emit('disconnect');
         socket = null;
+        // Reset Client UI State
+        $('.daemon-login').modal('show');
     });
 
     // create player

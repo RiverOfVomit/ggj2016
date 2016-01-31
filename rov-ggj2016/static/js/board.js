@@ -23,7 +23,7 @@ socket.on('tiles update', function(msg) {
     	var obj = tiles[i],
     		tileId = obj.id,
     		state = obj.state;
-    	board.find('.tile-' + tileId).addClass(state);        
+    	board.find('.tile-' + tileId).addClass(state);
     });
 });
 
@@ -32,6 +32,10 @@ socket.on('update players', function(msg) {
     jQuery.each(result, function(i, players) {
           addPlayersToPlayerOverview(players);
     });
+});
+
+socket.on('game won', function(msg) {
+    console.log("Game won!");
 });
 
 $('.reset-btn').click(function(){

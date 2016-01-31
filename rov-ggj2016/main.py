@@ -92,6 +92,15 @@ def update_board_event(event, data):
 def update_tile_event():
     all_tiles = jsonpickle.encode(gamecontroller.board.tiles,unpicklable=False)
     update_board_event('tiles update',all_tiles)
+    update_player_event()
+
+def update_player_event():
+    all_players = jsonpickle.encode(gamecontroller.players,unpicklable=False)
+    update_board_event('update players', all_players)
+
+def game_won_event():
+    #all_players = jsonpickle.encode(gamecontroller.players,unpicklable=False)
+    update_board_event('game won', {})
 
 ################### Client
 
@@ -100,8 +109,7 @@ def handle_client_connect_event():
     print 'Client Connected:', request.sid
     result = gamecontroller.add_player(request.sid)
     emit("player create result", jsonpickle.encode(result,unpicklable=False))
-    all_players = jsonpickle.encode(gamecontroller.players,unpicklable=False)
-    update_board_event('update players', all_players)
+    update_player_event()
 
 @socketio.on('disconnect', namespace='/client')
 def handle_client_disconnected_event():
@@ -125,7 +133,11 @@ def handle_tile_resolve_event():
     result = gamecontroller.resolve_tile(request.sid)
     result_json = jsonpickle.encode(result,unpicklable=False)
     emit("resolve tile result", result_json)
-    update_tile_event()
+    game_won = gamecontroller.check_if_game_won()
+    if game_won:
+        game_won_event()
+    else:
+        update_tile_event()
 
 @socketio.on('button pushed', namespace='/client')
 def handle_button_pushed_event(json):

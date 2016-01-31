@@ -75,6 +75,7 @@ var initializeClientStuff = function() {
         socket = null;
         // Reset Client UI State
         $('.daemon-login').modal('show');
+        $('body').removeClass('player-1 player-2 player-3');
         gameOut();
         topBarIn();
     });
@@ -111,7 +112,7 @@ var initializeClientStuff = function() {
       }else{
         createAudio(soundNegative);
         $('#choose-tile-form p').hide().fadeIn("300");
-        console.log('Bitte Zahl eingeben');
+        alert('Bitte Zahl eingeben');
       }
       $(this).find('input').blur();
       return false;
@@ -123,16 +124,16 @@ var initializeClientStuff = function() {
       var tileResult = jQuery.parseJSON(msg)
       if (tileResult === false || tileResult.state === 'solved') {
         spinnerOut();
-        console.log('tile belegt/gelöst');
-        $('#choose-tile-form p').hide().text('Choose another ritual (1-9)').fadeIn('300', function(){
-            $('#choose-tile-form p').hide().fadeIn('300');
-        });
+        alert('tile belegt/gelöst. Bitte andere Zahl wählen');
+        // $('#choose-tile-form p').hide().text('Choose another ritual (1-9)').fadeIn('300', function(){
+        //     $('#choose-tile-form p').hide().fadeIn('300');
+        // });
         
       }else{        
         spinnerOut();
         topBarOut();
         gameIn();
-        $('#choose-tile-form p').show().text('Choose a number between 1-9')
+        // $('#choose-tile-form p').show().text('Choose a number between 1-9')
       };        
     });
 
@@ -152,7 +153,7 @@ var initializeClientStuff = function() {
         alert('Fehler: Tile konnte nicht resolved werden');
       }else{
         tile = jQuery.parseJSON(msg);
-        console.log("Tile was resolved", tile)
+        alert("Tile was resolved");
       };
     });
 };

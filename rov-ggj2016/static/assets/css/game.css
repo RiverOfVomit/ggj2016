@@ -63,7 +63,7 @@ body.board{
 }
 .board-tbl{
 	width: 50%;
-	background: black;
+	/*background: black;*/
 	max-width: 600px;
 	position: absolute;
 	top: 100px;
@@ -84,13 +84,14 @@ body.board{
 .board-tbl .reserved{
 	background-position: 0 50%;
 }
-.board-tbl .open{
+/*.board-tbl .open{
 	background-color: yellow;
-}
-.board-tbl .resolved{
+}*/
+.board-tbl .resolved, .board-tbl .solved{
 	background-position: 0 100%;
 }
-.resolved .board-tbl-inner{
+.resolved .board-tbl-inner,
+.solved .board-tbl-inner{
 	position: absolute;
 	width: 50%;
 	height: 50%;
@@ -99,32 +100,32 @@ body.board{
 	transform: translate(-50%, -50%);
 	background-color: green;
 }
-.tile-1{
+.tile-0{
 	background-image: url('/static/assets/img/sprite_tile1.png');	
 }
+.tile-1{
+	background-image: url('/static/assets/img/sprite_tile2.png');	
+}
 .tile-2{
-	background-image: url('/static/assets/img/tile2.png');	
+	background-image: url('/static/assets/img/sprite_tile3.png');	
 }
 .tile-3{
-	background-image: url('/static/assets/img/tile3.png');	
+	background-image: url('/static/assets/img/sprite_tile4.png');	
 }
 .tile-4{
-	background-image: url('/static/assets/img/tile4.png');	
+	background-image: url('/static/assets/img/sprite_tile5.png');	
 }
 .tile-5{
-	background-image: url('/static/assets/img/tile5.png');	
+	background-image: url('/static/assets/img/sprite_tile6.png');	
 }
 .tile-6{
-	background-image: url('/static/assets/img/tile6.png');	
+	background-image: url('/static/assets/img/sprite_tile7.png');	
 }
 .tile-7{
-	background-image: url('/static/assets/img/tile7.png');	
+	background-image: url('/static/assets/img/sprite_tile8.png');	
 }
 .tile-8{
-	background-image: url('/static/assets/img/tile8.png');	
-}
-.tile-9{
-	background-image: url('/static/assets/img/tile9.png');	
+	background-image: url('/static/assets/img/sprite_tile9.png');	
 }
 #debughelper{
 	position: absolute;

@@ -12,15 +12,28 @@
 </head>
 <body class="client text-center">
 
-    <div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
-      <div class="modal-dialog modal-sm">
+    <div class="modal fade daemon-login" tabindex="-1" role="dialog">
+      <div class="modal-dialog">
         <div class="modal-content">
-          <button class="btn btn-primary btn-lg mini-game-btn">
-              Join the drunken Ritual Party!
-          </button>
-        </div>
-      </div>
-    </div>
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title">Welcome to BeeRDaemon!</h4>
+          </div>
+          <div class="modal-body">
+            <p>You. Are. Drunk. There was a book. Something about rituals. And
+                beer. A beer daemon. Summoning stuff. Be the favorite toy of
+                your new master by comlleting the most rituals.
+                &hellip;</p>
+            <button class="btn btn-primary btn-lg daemon-login-game">
+                Connect to drunken deamon ritual party
+            </button>
+          </div>
+          <div class="modal-footer">
+              <p>Made by RiverOfVomit. Clone on Github: https://github.com/RiverOfVomit/ggj2016</p>
+          </div>
+        </div><!-- /.modal-content -->
+      </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
 
     <div class="loading is-hidden">
         <div class="loading-inner">

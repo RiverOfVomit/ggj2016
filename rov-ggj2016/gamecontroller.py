@@ -49,6 +49,7 @@ class GameController():
         if player.tileid:
             print "Tile", player.tileid ,"resolved by", player.name
             tile = self.board.get_tile(player.tileid)
+            self.players.player[sid].add_score(1)
             tile.resolve(player)
             return tile
         else:

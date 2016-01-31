@@ -15,10 +15,15 @@ class Players(object):
     def return_player_with_highest_score(self):
         pass
 
+    def player_exists(self,sid):
+        for playerno in self.player:
+            if self.player[playerno].sid == sid:
+                return True
+
 class Player(object):
 
     def __init__(self, sid, player_type):
-    	print "Creating new Player"
+        print "Creating new Player"
         self.sid = sid
         self.name = random.choice(BD_PLAYER_NAMES) + str(random.randint(1, 100))
         self.type = player_type

@@ -19,6 +19,7 @@ class GameController():
         self.__init__()
 
     def request_tile(self, number, sid):
+        self.board.sanitycheck_players(self.players)
         player = self.get_player(sid)
         print "Tile", number ,"requested by", player.name
         tile = self.board.request_tile(number, player)
@@ -41,11 +42,13 @@ class GameController():
         if (sid in self.players.player):
             removed_player = self.players.player.pop(sid, None)
             self.player_slots.append(removed_player.type) # open up player slot
+            self.board.sanitycheck_players(self.players)
             print removed_player.name, 'left the game'
         #print "player len after pop", len(self.players.player)
 
     def resolve_tile(self,sid):
         player = self.get_player(sid)
+        self.board.sanitycheck_players(self.players)
         if player.tileid:
             print "Tile", player.tileid ,"resolved by", player.name
             tile = self.board.get_tile(player.tileid)
@@ -57,6 +60,7 @@ class GameController():
             return False
 
     def add_player(self,sid):
+        self.board.sanitycheck_players(self.players)
         if (sid not in self.players.player) and (len(self.player_slots) > 0):
             player_type = self.player_slots.popleft()
             new_player = self.players.add_new_player(sid, player_type)
@@ -67,6 +71,7 @@ class GameController():
             return False
 
     def check_if_game_won(self):
+        self.board.sanitycheck_players(self.players)
         unsolved_tiles = self.board.get_unsolved_tiles_count()
         if unsolved_tiles == 0:
             # get player with highest score

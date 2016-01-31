@@ -76,7 +76,7 @@ socket.on('player create result', function(msg) {
 
 });
 
-
+// Hallo Manu du Affe.
 
 // choose tile
 $('#choose-tile-form').submit(function(){

@@ -15,30 +15,15 @@ socket.on('button pushed', function(msg) {
 });
 
 // update board
-// socket.on('tile update', function(msg) {
-//     result = jQuery.parseJSON(msg)
-//     if (result.player) {
-//         console.log('tile update ' + result.id);
-//         if (result.state == 'reserved') {
-//         	board.find('.tile-' + (result.id +1)).addClass('reserved');
-//         };
-
-//     } else {
-//         console.log("no player found");
-//     };
-// });
-
-// update board
 socket.on('tiles update', function(msg) {
     tiles = jQuery.parseJSON(msg)
     //reset board
     board.find('td').removeClass('open reserved resolved')
     $.each(tiles, function(i,key, value){
     	var obj = tiles[i],
-    		tileId = obj.id +1,
+    		tileId = obj.id,
     		state = obj.state;
     	board.find('.tile-' + tileId).addClass(state);
-    	// console.log(obj, tileId, state);
     });
 });
 

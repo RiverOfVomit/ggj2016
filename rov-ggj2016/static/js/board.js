@@ -18,9 +18,9 @@ socket.on('button pushed', function(msg) {
 socket.on('tile update', function(msg) {
     result = jQuery.parseJSON(msg)
     if (result.player) {
-        console.log('tile update ' + result);
+        console.log('tile update ' + result.id);
         if (result.state == 'reserved') {
-        	board.find('.tile-' + result.id).addClass('reserved');
+        	board.find('.tile-' + (result.id +1)).addClass('reserved');
         };
 
     } else {

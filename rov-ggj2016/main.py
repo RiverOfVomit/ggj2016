@@ -88,8 +88,9 @@ def update_board_event(event, data):
     socketio.emit(event, data, namespace='/board')
 
 def update_tile_event():
-    all_tiles = jsonpickle.encode(gamecontroller.board.tiles,unpicklable=False)
-    update_board_event('tiles update',all_tiles)
+    tiles_and_player = {"tiles": gamecontroller.board.tiles, "players": gamecontroller.players}
+    tiles_and_player_json = jsonpickle.encode(tiles_and_player,unpicklable=False)
+    update_board_event('tiles update',tiles_and_player_json)
     update_player_event()
 
 def update_player_event():

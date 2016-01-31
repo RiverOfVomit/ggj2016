@@ -98,7 +98,7 @@ var initializeClientStuff = function() {
 
     // choose tile
     $('#choose-tile-form').submit(function(){
-      var value = $(this).find('input').val();
+      var value = $(this).find('select').val();
 
 
       if (!value == '') {

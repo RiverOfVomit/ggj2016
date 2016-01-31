@@ -50,7 +50,6 @@ class GameController():
             print "Tile", player.tileid ,"resolved by", player.name
             tile = self.board.get_tile(player.tileid)
             tile.resolve(player)
-            self.check_if_game_won()
             return tile
         else:
             print "Player", player.name, "has no tileid to resolve!"
@@ -69,6 +68,7 @@ class GameController():
     def check_if_game_won(self):
         unsolved_tiles = self.board.get_unsolved_tiles_count()
         if unsolved_tiles == 0:
+            # get player with highest score
             return True
 
     def rp(self):

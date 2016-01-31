@@ -21,7 +21,6 @@ class Board(object):
 			return self.tiles[number].request(player)
 		else:
 			return False
-
-#TESTS
-#tc = Board()
-#tc.initalize_tiles(tc.config)
+			
+	def get_tile(self,id):
+		return self.tiles[id]

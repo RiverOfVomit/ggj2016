@@ -63,17 +63,21 @@ def test():
 def handle_my_custom_event(json):
     print('Demo Event: ' + str(json))
 
-
+'''
 @socketio.on('disconnect')
 def test_disconnect():
     print 'Something disconnected', request.sid
-
+'''
 
 ################### Board
 
 @socketio.on('connect', namespace='/board')
 def handle_board_connected_event():
     print('Board Connected:', request.remote_addr)
+
+@socketio.on('disconnect', namespace='/board')
+def test_disconnect():
+    print 'Board disconnected', request.remote_addr
 
 @socketio.on("board reset", namespace='/board')
 def handle_board_reset_event():
@@ -112,8 +116,12 @@ def handle_tile_requested_event(data):
     update_board_event('tiles update',all_tiles)
 
 @socketio.on("resolve tile", namespace='/client')
-def handle_tile_requested_event(data):
-    pass
+def handle_tile_resolve_event():
+    result = gamecontroller.resolve_tile(request.sid)
+    result_json = jsonpickle.encode(result,unpicklable=False)
+    emit("resolve tile result", result_json)
+    all_tiles = jsonpickle.encode(gamecontroller.board.tiles,unpicklable=False)
+    update_board_event('tiles update',all_tiles)
 
 @socketio.on('button pushed', namespace='/client')
 def handle_button_pushed_event(json):

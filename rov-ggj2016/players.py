@@ -19,3 +19,4 @@ class Player(object):
         self.sid = sid
         self.name = random.choice(BD_PLAYER_NAMES) + str(random.randint(1, 100))
         self.type = player_type
+        self.tileid = None

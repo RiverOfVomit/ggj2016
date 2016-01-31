@@ -19,14 +19,16 @@ class GameController():
         self.__init__()
 
     def request_tile(self, number, sid):
-        print "Tile", number ,"requested (GameController) by player", self.players.player[sid].name
-        result = self.board.request_tile(number, self.get_player(sid))
+        player = self.get_player(sid)
+        print "Tile", number ,"requested by", player.name
+        tile = self.board.request_tile(number, player)
         #success = self.board.tile[number].request(self.get_player(sid))
-        if result:
-            print "Tile succesfully reserved", result.id
+        if tile:
+            print "Tile succesfully reserved", tile.id
+            player.tileid = tile.id
         else:
             print "Tile could not be reserved"
-        return result
+        return tile
 
     def choose_tile(self, something):
         print str(something), "I am the GameController"
@@ -41,6 +43,16 @@ class GameController():
             self.player_slots.append(removed_player.type) # open up player slot
             print removed_player.name, 'left the game'
         #print "player len after pop", len(self.players.player)
+
+    def resolve_tile(self,sid):
+        player = self.get_player(sid)
+        if player.tileid:
+            print "Tile", player.tileid ,"resolved by", player.name
+            tile = self.board.get_tile(player.tileid)
+            tile.resolve(player)
+            return tile
+        else:
+            return False
 
     def add_player(self,sid):
         if (sid not in self.players.player) and (len(self.player_slots) > 0):

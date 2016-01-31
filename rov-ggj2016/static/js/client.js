@@ -43,7 +43,7 @@ var createAudio = function(src) {
 spinnerIn(); // during initial load until player create event is returned
 
 socket.on('connect', function() {
-
+/*
     uuid = localStorage.getItem('gameUniqueId');
     if(uuid) {
         console.log("uuid was found: ", uuid);
@@ -53,8 +53,8 @@ socket.on('connect', function() {
         uuid = localStorage.getItem('gameUniqueId')
         console.debug("uuid was created: ", uuid);
     }
-
     socket.emit('register player', {'uuid': uuid});
+*/
 
     $(".mini-game-btn").click(function() {
       socket.emit('button pushed', {data: 'Button pushed!'});
@@ -76,14 +76,17 @@ socket.on('player create result', function(msg) {
 
 });
 
+
+
 // choose tile
 $('#choose-tile-form').submit(function(){
   var value = $(this).find('input').val();
-  console.log(value);
+
 
   if (!value == '') {
     // sound test
     createAudio(soundBottle);
+    console.log(value);
     socket.emit('choose tile', { "tile": value });
     spinnerIn();
 
@@ -107,12 +110,22 @@ socket.on('choose tile result', function(msg) {
 // resolve tile
 gameBtn.click(function(){
   createAudio(soundSend);
-  socket.emit('resolve tile', { "gameResolved": true });
+  socket.emit('resolve tile');
   gameOut();
   topBarIn();
   $('#choose-tile-form input').val('');
+  return false;
 });
 
+// resolve tile response
+socket.on('resolve tile result', function(msg) {
+  if (msg == "false") {
+    alert('Fehler: Tile konnte nicht resolved werden');
+  }else{
+    tile = jQuery.parseJSON(msg);
+    console.log("Tile was resolved", tile)
+  };
+});
 
 // create counter
 // function counter(){

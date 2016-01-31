@@ -45,10 +45,6 @@ def board():
     #return "Hello World!"
     return render_template('board.html')
 
-# @app.route('/<path:resource>')
-# def serveStaticResource(resource):
-#    return send_from_directory('static/', resource)
-
 @app.route("/test")
 def test():
     return "<strong>It's Alive!</strong>"
@@ -87,6 +83,7 @@ def handle_board_reset_event():
     all_players = jsonpickle.encode(gamecontroller.players,unpicklable=False)
     update_board_event('update players', all_players)
     update_tile_event()
+    disconnect_players_event()
 
 def update_board_event(event, data):
     print "Board event:", event, data
@@ -110,6 +107,9 @@ def handle_client_connect_event():
 def handle_client_disconnected_event():
     print 'Client disconnected', request.sid
     gamecontroller.remove_player(request.sid)
+
+def disconnect_players_event():
+    socketio.emit('logoff', namespace='/client', broadcast=True)
 
 @socketio.on("choose tile", namespace='/client')
 def handle_tile_requested_event(data):

@@ -11,7 +11,7 @@ var loadingSpinner = $('.loading'),
     socket = null
 
 
-$('.daemon-login').modal('toggle')
+$('.daemon-login').modal('show')
 $('.daemon-login').on('hidden.bs.modal', function (e) {
     if(!socket) {
         $('.daemon-login').modal('show');
@@ -80,6 +80,13 @@ var initializeClientStuff = function() {
         $(".mini-game-btn").click(function() {
           socket.emit('button pushed', {data: 'Button pushed!'});
         });
+    });
+
+    socket.on('logoff', function() {
+        console.log('logoff was send!');
+        $('.daemon-login').modal('show');
+        socket.emit('disconnect');
+        socket = null;
     });
 
     // create player

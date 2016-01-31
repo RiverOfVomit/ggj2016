@@ -17,7 +17,9 @@ socket.on('button pushed', function(msg) {
 
 // update board
 socket.on('tiles update', function(msg) {
-    tiles = jQuery.parseJSON(msg)
+    tiles_and_players = jQuery.parseJSON(msg)
+    // tiles = jQuery.parseJSON(tiles_and_players.tiles)
+    // players = jQuery.parseJSON(tiles_and_players.players)
     console.log("received tiles", tiles);
     //reset board
     board.find('td').removeClass('open reserved resolved solved')
@@ -25,6 +27,7 @@ socket.on('tiles update', function(msg) {
     	var obj = tiles[i],
     		tileId = obj.id,
     		state = obj.state;
+            debugger;
     	board.find('.tile-' + tileId).addClass(state);
     });
 });

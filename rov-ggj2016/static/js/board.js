@@ -18,8 +18,8 @@ socket.on('button pushed', function(msg) {
 // update board
 socket.on('tiles update', function(msg) {
     tiles_and_players = jQuery.parseJSON(msg)
-    tiles = jQuery.parseJSON(tiles_and_players.tiles)
-    players = jQuery.parseJSON(tiles_and_players.players)
+    // tiles = jQuery.parseJSON(tiles_and_players.tiles)
+    // players = jQuery.parseJSON(tiles_and_players.players)
     console.log("received tiles", tiles);
     //reset board
     board.find('td').removeClass('open reserved resolved solved')

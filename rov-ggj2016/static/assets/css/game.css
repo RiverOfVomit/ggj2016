@@ -82,13 +82,19 @@ body.board{
 	background-position: 0 0;
 }
 .board-tbl .reserved{
-	background-position: 0 50%;
+	background-position: 0 33.33%;
 }
 /*.board-tbl .open{
 	background-color: yellow;
 }*/
-.board-tbl .resolved, .board-tbl .solved{
+.board-tbl .player-1{
+	background-position: 0 66.66%;
+}
+.board-tbl .player-2{
 	background-position: 0 100%;
+}
+.board-tbl .player-3{
+	background-position: 0 33.33%;
 }
 .resolved .board-tbl-inner,
 .solved .board-tbl-inner{
@@ -98,7 +104,8 @@ body.board{
 	top: 50%;
 	left: 50%;
 	transform: translate(-50%, -50%);
-	background-color: green;
+	background: url('/static/assets/img/clear_lightblue.png') center;
+	background-size: contain;
 }
 .tile-number{
 	position: absolute;
@@ -133,6 +140,7 @@ body.board{
 .tile-9{
 	background-image: url('/static/assets/img/sprite_tile9.png');
 }
+
 #debughelper{
 	position: absolute;
 	bottom: 20%;
@@ -146,16 +154,16 @@ body.board{
 body.client{
 	background-color: black;
 }
-.player-1,
-.player-2,
-.player-3{
-	background: url('/static/assets/img/dude4.png') no-repeat -70px 125%;
-	background-size: 65%;
+.client.player-1,
+.client.player-2,
+.client.player-3{
+	background: black url('/static/assets/img/dude4.png') no-repeat -70px 125%;
+	background-size: 55%;
 }
-.player-2{
+.client.player-2{
 	background-image: url('/static/assets/img/dude5.png')
 }
-.player-3{
+.client.player-3{
 	background-image: url('/static/assets/img/dude3.png')
 }
 /* loading spinner */

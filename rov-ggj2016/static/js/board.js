@@ -36,6 +36,7 @@ socket.on('update players', function(msg) {
 
 socket.on('game won', function(msg) {
     console.log("Game won!");
+    $('.daemon-won').modal('show')
 });
 
 $('.reset-btn').click(function(){

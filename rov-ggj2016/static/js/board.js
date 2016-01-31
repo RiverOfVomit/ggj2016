@@ -50,6 +50,6 @@ $('.reset-btn').click(function(){
 var addPlayersToPlayerOverview = function(players) {
     $('.players').html('');
     jQuery.each(players, function(i, player) {
-        $('.players').append('<li>' + player.name + '</li>');
+        $('.players').append('<li>' + player.name + '<span class="score">' + player.score +'</span></li>');
     });
 };

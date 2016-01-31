@@ -100,31 +100,31 @@ body.board{
 	transform: translate(-50%, -50%);
 	background-color: green;
 }
-.tile-0{
+.tile-1{
 	background-image: url('/static/assets/img/sprite_tile1.png');	
 }
-.tile-1{
+.tile-2{
 	background-image: url('/static/assets/img/sprite_tile2.png');	
 }
-.tile-2{
+.tile-3{
 	background-image: url('/static/assets/img/sprite_tile3.png');	
 }
-.tile-3{
+.tile-4{
 	background-image: url('/static/assets/img/sprite_tile4.png');	
 }
-.tile-4{
+.tile-5{
 	background-image: url('/static/assets/img/sprite_tile5.png');	
 }
-.tile-5{
+.tile-6{
 	background-image: url('/static/assets/img/sprite_tile6.png');	
 }
-.tile-6{
+.tile-7{
 	background-image: url('/static/assets/img/sprite_tile7.png');	
 }
-.tile-7{
+.tile-8{
 	background-image: url('/static/assets/img/sprite_tile8.png');	
 }
-.tile-8{
+.tile-9{
 	background-image: url('/static/assets/img/sprite_tile9.png');	
 }
 #debughelper{

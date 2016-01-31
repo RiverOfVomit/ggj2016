@@ -1,5 +1,5 @@
 /* -------------------------------------------
-	CLIENT
+    CLIENT
 -----------------------------------------------*/
 var loadingSpinner = $('.loading'),
     topBar = $('.top-bar'),
@@ -44,7 +44,7 @@ var initializeClientStuff = function() {
     };
 
     var topBarOut = function() {
-        topBar.animate({top: "-160px"}, 500);
+        topBar.animate({top: "-140px"}, 500);
 
       };
 
@@ -75,6 +75,8 @@ var initializeClientStuff = function() {
         socket = null;
         // Reset Client UI State
         $('.daemon-login').modal('show');
+        gameOut();
+        topBarIn();
     });
 
     // create player
@@ -100,7 +102,6 @@ var initializeClientStuff = function() {
 
 
       if (!value == '') {
-        // sound test
         createAudio(soundBottle);
         console.log(value);
         socket.emit('choose tile', { "tile": value });
@@ -118,10 +119,21 @@ var initializeClientStuff = function() {
 
     // choose tile response
     socket.on('choose tile result', function(msg) {
-    	//player object || false
-    	spinnerOut();
-      topBarOut();
-      gameIn();
+        //player object || false
+      var tileResult = jQuery.parseJSON(msg)
+      if (tileResult === false || tileResult.state === 'solved') {
+        spinnerOut();
+        console.log('tile belegt/gelöst');
+        $('#choose-tile-form p').hide().text('Choose another ritual (1-9)').fadeIn('300', function(){
+            $('#choose-tile-form p').hide().fadeIn('300');
+        });
+        
+      }else{        
+        spinnerOut();
+        topBarOut();
+        gameIn();
+        $('#choose-tile-form p').show().text('Choose a number between 1-9')
+      };        
     });
 
     // resolve tile

@@ -117,6 +117,7 @@ var initializeClientStuff = function() {
         $('#choose-tile-form p').hide().fadeIn("300");
         console.log('Bitte Zahl eingeben');
       }
+      $(this).find('input').blur();
       return false;
     });
 

@@ -10,13 +10,12 @@ var loadingSpinner = $('.loading'),
     soundNegative = 'static/assets/sound/negative1.mp3',
     socket = null
 
-
 $('.daemon-login').modal('show')
 $('.daemon-login').on('hidden.bs.modal', function (e) {
     if(!socket) {
         $('.daemon-login').modal('show');
     }
-})
+});
 
 $('.daemon-login-game').click(function(){
     console.log("Starting game login");
@@ -128,13 +127,13 @@ var initializeClientStuff = function() {
         // $('#choose-tile-form p').hide().text('Choose another ritual (1-9)').fadeIn('300', function(){
         //     $('#choose-tile-form p').hide().fadeIn('300');
         // });
-        
-      }else{        
+
+      }else{
         spinnerOut();
         topBarOut();
         gameIn();
         // $('#choose-tile-form p').show().text('Choose a number between 1-9')
-      };        
+      };
     });
 
     // resolve tile

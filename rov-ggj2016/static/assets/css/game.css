@@ -100,6 +100,12 @@ body.board{
 	transform: translate(-50%, -50%);
 	background-color: green;
 }
+.tile-number{
+	position: absolute;
+	top: 10px;
+	left: 18px;
+	font-size: 20px;
+}
 .tile-1{
 	background-image: url('/static/assets/img/sprite_tile1.png');
 }
@@ -234,6 +240,13 @@ body.client{
 	max-width: 500px;
 	margin-top: 50px;
 	font-size: 30px;
+}
+
+.player-name{
+	position: absolute;
+	right: 30px;
+	bottom: 30px;
+	font-size: 20px;
 }
 
 /* Login Screen */

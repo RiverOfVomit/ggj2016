@@ -1,7 +1,7 @@
 import os
 
 #import logging
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, jsonify
 from flask_socketio import SocketIO, send, emit
 from gamecontroller import GameController
 import jsonpickle
@@ -88,8 +88,9 @@ def update_board_event(event, data):
     socketio.emit(event, data, namespace='/board')
 
 def update_tile_event():
-    tiles_and_player = {"tiles": gamecontroller.board.tiles, "players": gamecontroller.players}
-    tiles_and_player_json = jsonpickle.encode(tiles_and_player,unpicklable=False)
+    tiles = jsonpickle.encode(gamecontroller.board.tiles,unpicklable=False)
+    players = jsonpickle.encode(gamecontroller.players,unpicklable=False)
+    tiles_and_player_json = jsonpickle.encode({"tiles": tiles, "players": players},unpicklable=False)
     update_board_event('tiles update',tiles_and_player_json)
     update_player_event()
 

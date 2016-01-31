@@ -12,7 +12,7 @@
 </head>
 <body class="client text-center">
 
-    <div class="modal fade daemon-login" tabindex="-1" role="dialog">
+    <div class="modal fade daemon-login daemon-modal" tabindex="-1" role="dialog">
       <div class="modal-dialog">
         <div class="modal-content">
           <div class="modal-header">
@@ -47,9 +47,26 @@
         <div id="choose-tile">
             <form id="choose-tile-form">
                 <p>Choose a number between 1-9</p>
-                <input type="number" placeholder="1-9">
+                <!--
+                <input type="number">
+                <label for="title">Title</label>-->
 
-                <button type="submit" id="choose-tile-button" class="btn btn secondary choose-tile-button">Choose Ritual</button>
+                <select class="form-control" name="ritual-no">
+                  <option value="" selected>Choose BeeR Ritual!</option>
+
+                  <option value="1">1</option>
+                  <option value="2">2</option>
+                  <option value="3">3</option>
+                  <option value="4">4</option>
+                  <option value="5">5</option>
+                  <option value="6">6</option>
+                  <option value="7">7</option>
+                  <option value="8">8</option>
+                  <option value="9">9</option>
+                </select>
+
+                <button type="submit" id="choose-tile-button"
+                class="btn btn secondary choose-tile-button">Drink up!</button>
             </form>
         </div>
     </div>

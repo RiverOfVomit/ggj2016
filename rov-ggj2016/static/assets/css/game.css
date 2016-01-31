@@ -107,31 +107,31 @@ body.board{
 	font-size: 20px;
 }
 .tile-1{
-	background-image: url('/static/assets/img/sprite_tile1.png');	
+	background-image: url('/static/assets/img/sprite_tile1.png');
 }
 .tile-2{
-	background-image: url('/static/assets/img/sprite_tile2.png');	
+	background-image: url('/static/assets/img/sprite_tile2.png');
 }
 .tile-3{
-	background-image: url('/static/assets/img/sprite_tile3.png');	
+	background-image: url('/static/assets/img/sprite_tile3.png');
 }
 .tile-4{
-	background-image: url('/static/assets/img/sprite_tile4.png');	
+	background-image: url('/static/assets/img/sprite_tile4.png');
 }
 .tile-5{
-	background-image: url('/static/assets/img/sprite_tile5.png');	
+	background-image: url('/static/assets/img/sprite_tile5.png');
 }
 .tile-6{
-	background-image: url('/static/assets/img/sprite_tile6.png');	
+	background-image: url('/static/assets/img/sprite_tile6.png');
 }
 .tile-7{
-	background-image: url('/static/assets/img/sprite_tile7.png');	
+	background-image: url('/static/assets/img/sprite_tile7.png');
 }
 .tile-8{
-	background-image: url('/static/assets/img/sprite_tile8.png');	
+	background-image: url('/static/assets/img/sprite_tile8.png');
 }
 .tile-9{
-	background-image: url('/static/assets/img/sprite_tile9.png');	
+	background-image: url('/static/assets/img/sprite_tile9.png');
 }
 #debughelper{
 	position: absolute;
@@ -251,7 +251,7 @@ body.client{
 
 /* Login Screen */
 
-.modal.daemon-login .modal-content {
+.modal.daemon-modal .modal-content {
     background-color: black;
     border: 2px solid #940202;
     font-size: 18px;
@@ -268,7 +268,7 @@ body.client{
 }
 
 ul.players{
-	list-style: none;	
+	list-style: none;
 	font-size: 16px;
 	padding-left: 15px;
 }

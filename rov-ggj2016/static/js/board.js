@@ -7,6 +7,7 @@ var socket = io.connect('http://' + document.domain + ':' + location.port + '/bo
 
 socket.on('connect', function() {
     //socket.emit('board connected', {data: 'Board connected!'});
+    $('.daemon-won').modal('show')
 });
 
 socket.on('button pushed', function(msg) {
@@ -17,8 +18,9 @@ socket.on('button pushed', function(msg) {
 // update board
 socket.on('tiles update', function(msg) {
     tiles = jQuery.parseJSON(msg)
+    console.log("received tiles", tiles);
     //reset board
-    board.find('td').removeClass('open reserved resolved')
+    board.find('td').removeClass('open reserved resolved solved')
     $.each(tiles, function(i,key, value){
     	var obj = tiles[i],
     		tileId = obj.id,
@@ -41,6 +43,7 @@ socket.on('game won', function(msg) {
 
 $('.reset-btn').click(function(){
   socket.emit('board reset');
+  $('.daemon-won').modal('hide')
   return false;
 });
 

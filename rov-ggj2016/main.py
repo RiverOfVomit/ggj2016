@@ -79,11 +79,9 @@ def test_disconnect():
 @socketio.on("board reset", namespace='/board')
 def handle_board_reset_event():
     print "Board will be reseted"
-    gamecontroller.reset_game_state()
-    all_players = jsonpickle.encode(gamecontroller.players,unpicklable=False)
-    update_board_event('update players', all_players)
-    update_tile_event()
     disconnect_players_event()
+    gamecontroller.reset_game_state()
+    update_tile_event()
 
 def update_board_event(event, data):
     print "Board event:", event, data

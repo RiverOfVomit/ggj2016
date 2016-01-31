@@ -24,8 +24,8 @@ class GameController():
         tile = self.board.request_tile(number, player)
         #success = self.board.tile[number].request(self.get_player(sid))
         if tile:
-            print "Tile succesfully reserved", tile.id
             player.tileid = tile.id
+            print "Tile succesfully reserved", tile.id, player.tileid
         else:
             print "Tile could not be reserved"
         return tile
@@ -50,8 +50,10 @@ class GameController():
             print "Tile", player.tileid ,"resolved by", player.name
             tile = self.board.get_tile(player.tileid)
             tile.resolve(player)
+            self.check_if_game_won()
             return tile
         else:
+            print "Player", player.name, "has no tileid to resolve!"
             return False
 
     def add_player(self,sid):
@@ -63,6 +65,11 @@ class GameController():
         else:
             print "NO new player was created", len(self.player_slots)
             return False
+
+    def check_if_game_won(self):
+        unsolved_tiles = self.board.get_unsolved_tiles_count()
+		if unsolved_tiles == 0:
+			return True
 
     def rp(self):
         print "here delete now!"

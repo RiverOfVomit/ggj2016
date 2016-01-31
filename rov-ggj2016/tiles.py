@@ -25,4 +25,10 @@ class Tile(object):
             player.tileid = None
             return self
         else:
-            return False;
+            return False
+
+    def is_resolved(self):
+        if self.state == BD_TILE_STATE_SOLVED:
+            return True
+        else:
+            return False

@@ -81,7 +81,7 @@ def handle_board_reset_event():
     gamecontroller.reset_game_state()
     all_players = jsonpickle.encode(gamecontroller.players,unpicklable=False)
     update_board_event('update players', all_players)
-    
+
 def update_board_event(event, data):
     print "Board event:", event, data
     socketio.emit(event, data, namespace='/board')
@@ -108,6 +108,8 @@ def handle_tile_requested_event(data):
     result_json = jsonpickle.encode(result,unpicklable=False)
     emit("choose tile result", result_json)
     update_board_event('tile update',result_json)
+    all_tiles = jsonpickle.encode(gamecontroller.board.tiles,unpicklable=False)
+    update_board_event('tiles update',all_tiles)
 
 @socketio.on("resolve tile", namespace='/client')
 def handle_tile_requested_event(data):

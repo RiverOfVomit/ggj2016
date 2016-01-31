@@ -22,10 +22,16 @@ socket.on('tile update', function(msg) {
         if (result.state == 'reserved') {
         	board.find('.tile-' + result.id).addClass('reserved');
         };
-        
+
     } else {
         console.log("no player found");
     };
+});
+
+// update board
+socket.on('tiles update', function(msg) {
+    tiles = jQuery.parseJSON(msg)
+    console.log(tiles);
 });
 
 socket.on('update players', function(msg) {

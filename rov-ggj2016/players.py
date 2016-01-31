@@ -12,7 +12,7 @@ class Players(object):
         self.player[sid] = Player(sid,player_type)
         return self.player[sid]
 
-    def return_player_with_highscore(self):
+    def return_player_with_highest_score(self):
         pass
 
 class Player(object):
@@ -29,3 +29,16 @@ class Player(object):
         self.score += score
         print "SCORE ADDED:", self.name, "HAS NOW", self.score, "POINTS"
 
+
+# TESTING
+
+# players = Players()
+# print players.player
+
+# players.add_new_player("sid_00", "null")
+# players.add_new_player("sid_01", "eins")
+# players.add_new_player("sid_02", "zwei")
+# print players.player
+
+# for player in players.player:
+#     print players.player[player].score

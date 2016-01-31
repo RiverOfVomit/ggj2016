@@ -53,13 +53,20 @@ body.board{
 	background: black url('/static/assets/img/beer_daemon.png') right bottom no-repeat;
 	background-size: contain;
 }
-
+.intro{
+	width: 50%;
+	max-width: 600px;
+	margin-left: 80px;
+}
+.intro p{
+	font-size: 20px;
+}
 .board-tbl{
 	width: 50%;
 	background: black;
-	max-width: 750px;
+	max-width: 600px;
 	position: absolute;
-	top: 80px;
+	top: 100px;
 	left: 80px;
 	border-spacing: 0
 }
@@ -70,59 +77,59 @@ body.board{
 	text-align: center;
 	font-size: 30px;
 	position: relative;
+	background-size: cover;
+	background-repeat: no-repeat;
+	background-position: 0 0;
 }
 .board-tbl .reserved{
-	background-color: gray;
+	background-position: 0 50%;
 }
 .board-tbl .open{
 	background-color: yellow;
 }
 .board-tbl .resolved{
-	background-color: green;
+	background-position: 0 100%;
 }
-.board-tbl-inner{
+.resolved .board-tbl-inner{
 	position: absolute;
-	width: 100%;
-	height: 100%;
+	width: 50%;
+	height: 50%;
 	top: 50%;
 	left: 50%;
 	transform: translate(-50%, -50%);
+	background-color: green;
 }
 .tile-1{
-	background: url('/static/assets/img/tile1.png');
-	background-size: cover;
+	background-image: url('/static/assets/img/sprite_tile1.png');	
 }
 .tile-2{
-	background: url('/static/assets/img/tile2.png');
-	background-size: cover;
+	background-image: url('/static/assets/img/tile2.png');	
 }
 .tile-3{
-	background: url('/static/assets/img/tile3.png');
-	background-size: cover;
+	background-image: url('/static/assets/img/tile3.png');	
 }
 .tile-4{
-	background: url('/static/assets/img/tile4.png');
-	background-size: cover;
+	background-image: url('/static/assets/img/tile4.png');	
 }
 .tile-5{
-	background: url('/static/assets/img/tile5.png');
-	background-size: cover;
+	background-image: url('/static/assets/img/tile5.png');	
 }
 .tile-6{
-	background: url('/static/assets/img/tile6.png');
-	background-size: cover;
+	background-image: url('/static/assets/img/tile6.png');	
 }
 .tile-7{
-	background: url('/static/assets/img/tile7.png');
-	background-size: cover;
+	background-image: url('/static/assets/img/tile7.png');	
 }
 .tile-8{
-	background: url('/static/assets/img/tile8.png');
-	background-size: cover;
+	background-image: url('/static/assets/img/tile8.png');	
 }
 .tile-9{
-	background: url('/static/assets/img/tile9.png');
-	background-size: cover;
+	background-image: url('/static/assets/img/tile9.png');	
+}
+#debughelper{
+	position: absolute;
+	bottom: 20%;
+    left: 25%;
 }
 
 /* -------------------------------------------

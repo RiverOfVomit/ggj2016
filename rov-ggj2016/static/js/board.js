@@ -23,7 +23,7 @@ socket.on('tiles update', function(msg) {
     	var obj = tiles[i],
     		tileId = obj.id,
     		state = obj.state;
-    	board.find('.tile-' + tileId).addClass(state);
+    	board.find('.tile-' + tileId).addClass(state);        
     });
 });
 

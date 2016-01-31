@@ -74,6 +74,12 @@ body.board{
 .board-tbl .reserved{
 	background-color: gray;
 }
+.board-tbl .open{
+	background-color: yellow;
+}
+.board-tbl .resolved{
+	background-color: green;
+}
 .board-tbl-inner{
 	position: absolute;
 	width: 100%;

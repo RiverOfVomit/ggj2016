@@ -22,7 +22,7 @@ socket.on('tiles update', function(msg) {
     tiles = jQuery.parseJSON(tiles_and_players.tiles)    
     console.log("received tiles update", players, tiles);
     //reset board
-    board.find('td').removeClass('open reserved resolved solved')
+    board.find('td').removeClass('open reserved resolved solved player-1 player-2 player-3')
     $.each(tiles, function(i,key, value){
     	var tile = tiles[i],
     		tileId = tile.id,

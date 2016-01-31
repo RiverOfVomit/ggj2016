@@ -34,6 +34,5 @@ class Tile(object):
             return False
 
     def reset_tile(self):
-        self.id = number
         self.state = BD_TILE_STATE_OPEN
         self.playersid = None

@@ -74,6 +74,7 @@ def test_disconnect():
 @socketio.on('connect', namespace='/board')
 def handle_board_connected_event():
     print('Board Connected:', request.remote_addr)
+    update_tile_event()
 
 @socketio.on('disconnect', namespace='/board')
 def test_disconnect():
@@ -85,10 +86,15 @@ def handle_board_reset_event():
     gamecontroller.reset_game_state()
     all_players = jsonpickle.encode(gamecontroller.players,unpicklable=False)
     update_board_event('update players', all_players)
+    update_tile_event()
 
 def update_board_event(event, data):
     print "Board event:", event, data
     socketio.emit(event, data, namespace='/board')
+
+def update_tile_event():
+    all_tiles = jsonpickle.encode(gamecontroller.board.tiles,unpicklable=False)
+    update_board_event('tiles update',all_tiles)
 
 ################### Client
 
@@ -112,16 +118,14 @@ def handle_tile_requested_event(data):
     result_json = jsonpickle.encode(result,unpicklable=False)
     emit("choose tile result", result_json)
     update_board_event('tile update',result_json)
-    all_tiles = jsonpickle.encode(gamecontroller.board.tiles,unpicklable=False)
-    update_board_event('tiles update',all_tiles)
+    update_tile_event()
 
 @socketio.on("resolve tile", namespace='/client')
 def handle_tile_resolve_event():
     result = gamecontroller.resolve_tile(request.sid)
     result_json = jsonpickle.encode(result,unpicklable=False)
     emit("resolve tile result", result_json)
-    all_tiles = jsonpickle.encode(gamecontroller.board.tiles,unpicklable=False)
-    update_board_event('tiles update',all_tiles)
+    update_tile_event()
 
 @socketio.on('button pushed', namespace='/client')
 def handle_button_pushed_event(json):

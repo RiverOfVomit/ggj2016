@@ -10,6 +10,8 @@ var loadingSpinner = $('.loading'),
     soundNegative = 'static/assets/sound/negative1.mp3',
     socket = io.connect('http://' + document.domain + ':' + location.port + '/client');
 
+$('.bs-example-modal-sm').modal()
+
 var spinnerIn = function() {
     loadingSpinner.fadeIn();
 };

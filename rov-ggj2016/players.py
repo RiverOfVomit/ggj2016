@@ -12,6 +12,9 @@ class Players(object):
         self.player[sid] = Player(sid,player_type)
         return self.player[sid]
 
+    def return_player_with_highscore(self):
+        pass
+
 class Player(object):
 
     def __init__(self, sid, player_type):
@@ -20,3 +23,9 @@ class Player(object):
         self.name = random.choice(BD_PLAYER_NAMES) + str(random.randint(1, 100))
         self.type = player_type
         self.tileid = None
+        self.score = 0
+
+    def add_score(self, score):
+        self.score += score
+        print "SCORE ADDED:", self.name, "HAS NOW", self.score, "POINTS"
+
